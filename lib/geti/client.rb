@@ -13,50 +13,40 @@ class Geti::Client
   end
 
   def get_certification_terminal_settings
-    response = soap_client.request "GetCertificationTerminalSettings" do
-      http.headers.delete('SOAPAction')
-      config.soap_header = soap_header
-      content = <<-XML.gsub(/(^|\n) +/, '')
-        <?xml version="1.0" encoding="utf-8"?>
-        <AUTH_GATEWAY REQUEST_ID="123">
-          <TRANSACTION>
-            <TRANSACTION_ID/>
-            <MERCHANT>
-              <TERMINAL_ID/>
-            </MERCHANT>
-            <PACKET>
-              <IDENTIFIER/>
-              <ACCOUNT>
-                <ROUTING_NUMBER/>
-                <ACCOUNT_NUMBER/>
-                <ACCOUNT_TYPE/>
-              </ACCOUNT>
-              <CONSUMER>
-                <FIRST_NAME/>
-                <LAST_NAME/>
-                <ADDRESS1/>
-                <ADDRESS2/>
-                <CITY/>
-                <STATE/>
-                <ZIP/>
-                <PHONE_NUMBER/>
-                <DL_STATE/>
-                <DL_NUMBER/>
-                <COURTESY_CARD_ID/>
-              </CONSUMER>
-              <CHECK>
-                <CHECK_AMOUNT/>
-              </CHECK>
-            </PACKET>
-          </TRANSACTION>
-        </AUTH_GATEWAY>
-      XML
-      soap.body = {"DataPacket" => content}
+    soap_request "GetCertificationTerminalSettings" do |xml|
+      xml.AUTH_GATEWAY(:REQUEST_ID => 123) do
+        xml.TRANSACTION do
+          xml.TRANSACTION_ID
+          xml.MERCHANT do
+            xml.TERMINAL_ID
+          end
+          xml.PACKET do
+            xml.IDENTIFIER
+            xml.ACCOUNT do
+              xml.ROUTING_NUMBER
+              xml.ACCOUNT_NUMBER
+              xml.ACCOUNT_TYPE
+            end
+            xml.CONSUMER do
+              xml.FIRST_NAME
+              xml.LAST_NAME
+              xml.ADDRESS1
+              xml.ADDRESS2
+              xml.CITY
+              xml.STATE
+              xml.ZIP
+              xml.PHONE_NUMBER
+              xml.DL_STATE
+              xml.DL_NUMBER
+              xml.COURTESY_CARD_ID
+            end
+            xml.CHECK do
+              xml.CHECK_AMOUNT
+            end
+          end
+        end
+      end
     end
-
-    result = response.body[:get_certification_terminal_settings_response][:get_certification_terminal_settings_result]
-#    pp Nori.parse(result)
-    Nori.parse(result)
   end
 
 
@@ -72,6 +62,24 @@ class Geti::Client
       },
       :attributes! => { 'AuthGatewayHeader' => {'xmlns'=>"http://tempuri.org/GETI.eMagnus.WebServices/AuthGateway"}}
     }
+  end
+
+  def soap_request(operation)
+    response = soap_client.request operation do
+      http.headers.delete('SOAPAction')
+      config.soap_header = soap_header
+      xml = Builder::XmlMarkup.new
+      xml.instruct!
+      yield xml
+      content = xml.target!
+      soap.body = {"DataPacket" => content}
+    end
+
+    op_key = operation.gsub(/(.)([A-Z])/, '\1_\2').downcase
+    response_key = (op_key+'_response').to_sym
+    result_key = (op_key+'_result').to_sym
+
+    Nori.parse(response.body[response_key][result_key])
   end
 
   def terminal_id
