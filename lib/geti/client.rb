@@ -84,8 +84,21 @@ class Geti::Client
 
   def terminal_id
     base = {
-      'PPD' => 1010,
-      'WEB' => 2310
+      # Guaranteed
+      'PPD' => 1010, # Debit-only
+      'POP' => 1110,
+      'TEL' => 1210,
+      'C21' => 1610,
+      'CCD' => 1710, # Debit only
+      'PPD_cr' => 1810, # Debit and Credit
+      'CCD_cr' => 1910, # Debit and Credit
+      # Non-Guaranteed
+      'PPD_ng' => 2010,
+      'TEL_ng' => 2210,
+      'WEB'    => 2310, # Web is always non-guaranteed
+      'CCD_ng' => 2710,
+      'PPD_ng_cr' => 2810,
+      'CCD_ng_cr' => 2910
     }[@sec_code]
     offset = {
       [false, false, false] => 0,
