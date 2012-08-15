@@ -2,6 +2,7 @@ source :rubygems
 
 gem 'savon'
 gem 'httpi'
+gem 'httpclient'
 
 group :development do
   gem 'rake', "< 0.9"
