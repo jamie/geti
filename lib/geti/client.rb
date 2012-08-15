@@ -16,6 +16,58 @@ class Geti::Client
     soap_request "GetCertificationTerminalSettings"
   end
 
+  def auth_gateway_certification(opts)
+    soap_request "AuthGatewayCertification" do |xml|
+      xml.AUTH_GATEWAY do # has an optional REQUEST_ID for later lookups
+        xml.TRANSACTION do
+          xml.TRANSACTION_ID
+          xml.MERCHANT do
+            xml.TERMINAL_ID terminal_id
+          end
+          xml.PACKET do
+            xml.IDENTIFIER identifier(opts[:type])
+            xml.ACCOUNT do
+              xml.ROUTING_NUMBER opts[:routing_number]
+              xml.ACCOUNT_NUMBER opts[:account_number]
+              xml.ACCOUNT_TYPE   opts[:account_type]
+            end
+            xml.CONSUMER do
+              xml.FIRST_NAME opts[:first_name]
+              xml.LAST_NAME  opts[:last_name]
+              xml.ADDRESS1
+              xml.ADDRESS2
+              xml.CITY
+              xml.STATE
+              xml.ZIP
+              xml.PHONE_NUMBER
+              xml.DL_STATE
+              xml.DL_NUMBER
+              xml.COURTESY_CARD_ID
+              if @verify_id
+                xml.IDENTITY do
+                  xml.SSN4
+                  xml.DOB_YEAR
+                end
+              end
+            end
+            xml.CHECK do
+              xml.CHECK_AMOUNT opts[:amount]
+            end
+          end
+        end
+      end
+    end
+  end
+
+
+  def identifier(name)
+    { :authorize => 'A',
+      :void      => 'V',
+      :override  => 'O',
+      :payroll   => 'P',
+      :recurring => 'R'
+    }[name]
+  end
 
   def soap_client
     @soap_client ||= Savon.client("https://demo.eftchecks.com/webservices/AuthGateway.asmx?WSDL")
