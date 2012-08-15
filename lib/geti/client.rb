@@ -13,40 +13,7 @@ class Geti::Client
   end
 
   def get_certification_terminal_settings
-    soap_request "GetCertificationTerminalSettings" do |xml|
-      xml.AUTH_GATEWAY(:REQUEST_ID => 123) do
-        xml.TRANSACTION do
-          xml.TRANSACTION_ID
-          xml.MERCHANT do
-            xml.TERMINAL_ID
-          end
-          xml.PACKET do
-            xml.IDENTIFIER
-            xml.ACCOUNT do
-              xml.ROUTING_NUMBER
-              xml.ACCOUNT_NUMBER
-              xml.ACCOUNT_TYPE
-            end
-            xml.CONSUMER do
-              xml.FIRST_NAME
-              xml.LAST_NAME
-              xml.ADDRESS1
-              xml.ADDRESS2
-              xml.CITY
-              xml.STATE
-              xml.ZIP
-              xml.PHONE_NUMBER
-              xml.DL_STATE
-              xml.DL_NUMBER
-              xml.COURTESY_CARD_ID
-            end
-            xml.CHECK do
-              xml.CHECK_AMOUNT
-            end
-          end
-        end
-      end
-    end
+    soap_request "GetCertificationTerminalSettings"
   end
 
 
@@ -70,7 +37,7 @@ class Geti::Client
       config.soap_header = soap_header
       xml = Builder::XmlMarkup.new
       xml.instruct!
-      yield xml
+      yield xml if block_given?
       content = xml.target!
       soap.body = {"DataPacket" => content}
     end
