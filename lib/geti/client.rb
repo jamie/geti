@@ -2,9 +2,10 @@ require 'savon'
 require 'httpi'
 
 class Geti::Client
-  def initialize(auth, terminal_opts)
+  def initialize(auth, terminal_opts, env='test')
     @user = auth[:user]
     @pass = auth[:pass]
+    @env = env
 
     @sec_code = terminal_opts[:sec_code]
     @verify_check = terminal_opts[:verify].include? :check
@@ -95,6 +96,7 @@ class Geti::Client
   end
 
   def soap_request(operation)
+    operation.sub!('Certification','') unless certification?
     response = soap_client.request operation do
       http.headers.delete('SOAPAction')
       config.soap_header = soap_header
@@ -141,5 +143,9 @@ class Geti::Client
       [true,  false, true ] => 7
     }[[@dl_required, @verify_check, @verify_id]]
     base + offset
+  end
+
+  def certification?
+    @env != 'production'
   end
 end
