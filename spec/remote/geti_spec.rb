@@ -21,10 +21,10 @@ describe Geti::Client do
     end
   end
 
-  describe '#auth_gateway_certification' do
+  describe '#validate' do
     it 'gets a failed WEB response' do
       client = Geti::Client.new(test_credentials, {:sec_code => 'WEB', :verify => []})
-      response = client.auth_gateway_certification({})
+      response = client.validate({})
       response.validation.result.must_equal "Failed"
       response.wont_be :success?
       
@@ -33,7 +33,7 @@ describe Geti::Client do
 
     it 'gets a successful WEB response' do
       client = Geti::Client.new(test_credentials, {:sec_code => 'WEB', :verify => []})
-      response = client.auth_gateway_certification({
+      response = client.validate({
         :type => :authorize,
         :amount => 1000,
         :first_name => 'Bob',

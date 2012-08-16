@@ -24,7 +24,7 @@ class Geti::Client
   # terminal. The returned Result will have a validation response
   # but no authorization.
   # NOTE: CERTIFICATION SERVER ONLY
-  def auth_gateway_certification(opts)
+  def validate(opts)
     response = soap_request("AuthGatewayCertification") do |xml|
       data_packet(xml, opts)
     end
