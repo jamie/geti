@@ -1,5 +1,13 @@
 require 'helper'
 
+def routing_number(type)
+  { :authorization  => 490000018,
+    :decline        => 490000034,
+    :manager_needed => 490000021,
+    :represented    => 490000047
+  }[type]
+end
+
 describe Geti::Client do
   describe '#get_terminal_settings' do
     it 'gets a successful WEB response' do
@@ -69,6 +77,23 @@ describe Geti::Client do
       })
       response.wont_be :success?
       response.exception.message.wont_be_empty
+    end
+
+    it 'gets a successful WEB response' do
+      client = Geti::Client.new(test_credentials, {:sec_code => 'WEB', :verify => []})
+      response = client.process({
+        :type => :authorize,
+        :amount => 1000,
+        :first_name => 'Bob',
+        :last_name => 'Smith',
+        :account_type => 'Checking',
+        :routing_number => routing_number(:authorization),
+        :account_number => '1234567890'
+      })
+      response.validation.result.must_equal "Passed"
+      response.must_be :success?
+      response.errors.must_be_empty
+      response.authorization.message.must_equal "APPROVAL"
     end
   end
 end
