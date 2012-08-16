@@ -37,6 +37,11 @@ namespace :spec do
     test.pattern = 'spec/remote/*_spec.rb'
     test.verbose = true
   end
+  Rake::TestTask.new(:all) do |test|
+    test.libs << 'lib' << 'spec'
+    test.pattern = 'spec/**/*_spec.rb'
+    test.verbose = true
+  end
 end
 
 require 'rcov/rcovtask'
