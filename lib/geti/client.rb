@@ -17,9 +17,10 @@ class Geti::Client
   end
 
   def auth_gateway_certification(opts)
-    soap_request "AuthGatewayCertification" do |xml|
+    response = soap_request("AuthGatewayCertification") do |xml|
       data_packet(xml, opts)
     end
+    Geti::Response.new(response)
   end
 
 

@@ -25,7 +25,10 @@ describe Geti::Client do
     it 'gets a failed WEB response' do
       client = Geti::Client.new(test_credentials, {:sec_code => 'WEB', :verify => []})
       response = client.auth_gateway_certification({})
-      response[:response][:validation_message][:result].must_equal "Failed"
+      response.validation.result.must_equal "Failed"
+      response.wont_be :success?
+      
+      response.errors.must_include "The 'CHECK_AMOUNT' element has an invalid value according to its data type."
     end
 
     it 'gets a successful WEB response' do
@@ -39,7 +42,10 @@ describe Geti::Client do
         :routing_number => '123456778',
         :account_number => '1234567890'
       })
-      response[:response][:validation_message][:result].must_equal "Passed"
+      response.validation.result.must_equal "Passed"
+      response.must_be :success?
+
+      response.errors.must_be_empty
     end
   end
 end
