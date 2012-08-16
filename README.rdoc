@@ -14,6 +14,5 @@ Description goes here.
 
 == Copyright
 
-Copyright (c) 2012 Jamie Macey. See LICENSE.txt for
-further details.
+Copyright (c) 2012 VersaPay Corp. See LICENSE.txt for further details.
 
