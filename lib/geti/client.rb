@@ -31,6 +31,15 @@ class Geti::Client
     Geti::Response.new(response)
   end
 
+  # Creates an authorization for funds transfer. Returns a Result
+  # with both validation and (if valid) authorization responses.
+  def process(opts)
+    response = soap_request("ProcessSingleCertificationCheck") do |xml|
+      data_packet(xml, opts)
+    end
+    Geti::Response.new(response)
+  end
+
 
   def data_packet(xml, opts)
     xml.AUTH_GATEWAY do # has an optional REQUEST_ID attribute for later lookups

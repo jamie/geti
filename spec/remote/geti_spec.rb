@@ -27,7 +27,6 @@ describe Geti::Client do
       response = client.validate({})
       response.validation.result.must_equal "Failed"
       response.wont_be :success?
-      
       response.errors.must_include "The 'CHECK_AMOUNT' element has an invalid value according to its data type."
     end
 
@@ -44,8 +43,32 @@ describe Geti::Client do
       })
       response.validation.result.must_equal "Passed"
       response.must_be :success?
-
       response.errors.must_be_empty
+    end
+  end
+
+  describe '#process' do
+    it 'gets a failed WEB response' do
+      client = Geti::Client.new(test_credentials, {:sec_code => 'WEB', :verify => []})
+      response = client.process({})
+      response.validation.result.must_equal "Failed"
+      response.wont_be :success?
+      response.errors.must_include "The 'CHECK_AMOUNT' element has an invalid value according to its data type."
+    end
+
+    it 'gets an exception' do
+      client = Geti::Client.new(test_credentials, {:sec_code => 'WEB', :verify => []})
+      response = client.process({
+        :type => :authorize,
+        :amount => 1000,
+        :first_name => 'Bob',
+        :last_name => 'Smith',
+        :account_type => 'Checking',
+        :routing_number => '123456778',
+        :account_number => '1234567890'
+      })
+      response.wont_be :success?
+      response.exception.message.wont_be_empty
     end
   end
 end
