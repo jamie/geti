@@ -32,7 +32,7 @@ describe Geti::Client do
       client = Geti::Client.new(test_credentials, {:sec_code => 'WEB', :verify => []})
       response = client.auth_gateway_certification({
         :type => :authorize,
-        :amount => 10.00,
+        :amount => 1000,
         :first_name => 'Bob',
         :last_name => 'Smith',
         :account_type => 'Checking',
