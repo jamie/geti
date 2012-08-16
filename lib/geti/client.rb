@@ -13,7 +13,7 @@ class Geti::Client
   end
 
   def get_certification_terminal_settings
-    soap_request "GetCertificationTerminalSettings"
+    Geti::TerminalSettings.new(soap_request("GetCertificationTerminalSettings"))
   end
 
   def auth_gateway_certification(opts)
@@ -57,7 +57,7 @@ class Geti::Client
             end
           end
           xml.CHECK do
-            xml.CHECK_AMOUNT("%.2d" % opts[:amount])
+            xml.CHECK_AMOUNT("%.2d" % ((opts[:amount]||0)/100.0))
           end
         end
       end

@@ -4,20 +4,20 @@ describe Geti::Client do
   describe 'get_certification_terminal_settings' do
     it 'gets a successful WEB response' do
       client = Geti::Client.new(test_credentials, {:sec_code => 'WEB', :verify => []})
-      response = client.get_certification_terminal_settings
-      response[:terminal_settings][:terminal_id].must_equal "2310"
+      terminal_settings = client.get_certification_terminal_settings
+      terminal_settings.terminal_id.must_equal "2310"
     end
 
     it 'gets a successful PPD response' do
       client = Geti::Client.new(test_credentials, {:sec_code => 'PPD', :verify => []})
-      response = client.get_certification_terminal_settings
-      response[:terminal_settings][:terminal_id].must_equal "1010"
+      terminal_settings = client.get_certification_terminal_settings
+      terminal_settings.terminal_id.must_equal "1010"
     end
 
     it 'gets a restricted WEB response' do
       client = Geti::Client.new(test_credentials, {:sec_code => 'WEB', :verify => [:dl]})
-      response = client.get_certification_terminal_settings
-      response[:terminal_settings][:terminal_id].must_equal "2311"
+      terminal_settings = client.get_certification_terminal_settings
+      terminal_settings.terminal_id.must_equal "2311"
     end
   end
 
