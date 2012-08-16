@@ -12,10 +12,16 @@ class Geti::Client
     @dl_required = terminal_opts[:verify].include? :dl
   end
 
+  # Loads terminal settings for the configured terminal. Returns a
+  # TerminalSettings object that can be used to confirm requested
+  # verification features, terminal ID, and XSD/XML templates.
   def get_certification_terminal_settings
     Geti::TerminalSettings.new(soap_request("GetCertificationTerminalSettings"))
   end
 
+  # Used to verify that an XML request is valid for use on the
+  # terminal. The returned Result will have a validation response
+  # but no authorization.
   def auth_gateway_certification(opts)
     response = soap_request("AuthGatewayCertification") do |xml|
       data_packet(xml, opts)
