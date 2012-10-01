@@ -1,6 +1,6 @@
 require 'helper'
 
-class Geti::Client
+class Geti::AuthClient
   def stub_soap_client!(client)
     @soap_client = client
   end
@@ -22,7 +22,7 @@ def get_terminal_settings_response
   })
 end
 
-describe Geti::Client do
+describe Geti::AuthClient do
   before do
     @soap_mock = MiniTest::Mock.new
   end
@@ -30,14 +30,14 @@ describe Geti::Client do
   describe '#get_terminal_settings' do
     it 'calls GetCertificationTerminalSettings' do
       @soap_mock.expect(:request, get_certification_terminal_settings_response, ["GetCertificationTerminalSettings"])
-      client = Geti::Client.new(test_credentials, {:sec_code => 'WEB', :verify => []})
+      client = Geti::AuthClient.new(test_credentials, {:sec_code => 'WEB', :verify => []})
       client.stub_soap_client!(@soap_mock)
       client.get_terminal_settings
     end
 
     it 'calls GetTerminalSettings in production' do
       @soap_mock.expect(:request, get_terminal_settings_response, ["GetTerminalSettings"])
-      client = Geti::Client.new(test_credentials, {:sec_code => 'WEB', :verify => []}, 'production')
+      client = Geti::AuthClient.new(test_credentials, {:sec_code => 'WEB', :verify => []}, 'production')
       client.stub_soap_client!(@soap_mock)
       client.get_terminal_settings
     end
