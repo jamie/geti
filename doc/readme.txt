@@ -17,3 +17,12 @@ To Do:
 - Voids
 - Certification
 - Bundle into a gem
+
+
+
+
+### Application Processing
+
+New Merchant Application XSD is https://demo.eftchecks.com/webservices/Schemas/App/NewMerchApp_ACH.xsd
+
+Sample data is https://demo.eftchecks.com/webservices/Schemas/App/Example/NewMerchAppSample_ACH.xml
