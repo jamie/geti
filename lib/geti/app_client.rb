@@ -1,7 +1,7 @@
 class Geti::AppClient < Geti::Client
 
   def board_merchant_ach(application)
-    response = soap_request("BoardCertificationMerchant_ACH") do |xml|
+    response = soap_request("BoardCertificationMerchant_ACH", "board_certification_merchant_ach") do |xml|
       data_packet(xml, application)
     end
   end
@@ -11,9 +11,9 @@ class Geti::AppClient < Geti::Client
       xml.Body :FileName => "261407_28_May_2009_12_05_00_590.xml", :FileDate => Time.now.iso8601 do
         xml.NewMerchant({
           :isoID => "9999",
-          :merchCrossRefId => "261407",
+          :merchCrossRefID => opts[:id],
           :merchName => "Test Merchant ACH 1",
-          :merchTypeId => "49",
+          :merchTypeID => "49",
           :merchServiceType => "GOLD",
           :merchAddress1 => "123 Main Street",
           :merchCity => "Destin",

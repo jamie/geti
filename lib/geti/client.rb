@@ -12,7 +12,7 @@ class Geti::Client
     @soap_client ||= Savon.client(service_address)
   end
 
-  def soap_request(operation)
+  def soap_request(operation, op_key=nil)
     operation.sub!('Certification','') unless certification?
     response = soap_client.request operation do
       http.headers.delete('SOAPAction')
@@ -24,7 +24,7 @@ class Geti::Client
       soap.body = {"DataPacket" => content}
     end
 
-    op_key = operation.gsub(/(.)([A-Z])/, '\1_\2').downcase
+    op_key ||= operation.gsub(/(.)([A-Z])/, '\1_\2').downcase
     response_key = (op_key+'_response').to_sym
     result_key = (op_key+'_result').to_sym
 
