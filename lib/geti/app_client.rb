@@ -72,34 +72,7 @@ class Geti::AppClient < Geti::Client
               :termTypeID => "16",
               :termVerificationOnly => "0",
             })
-            xml.NewTerminal({
-              :termCrossRefID => "53317",
-              :termCheckLimit => "500.00",
-              :termPeripheral => "63",
-              :termTypeID => "172",
-              :termVerificationOnly => "0",
-            })
-            xml.NewTerminal({
-              :termCrossRefID => "296223",
-              :termCheckLimit => "500.00",
-              :termPeripheral => "63",
-              :termTypeID => "637",
-              :termVerificationOnly => "0",
-            })
-            xml.NewTerminal({
-              :termCrossRefID => "296228",
-              :termCheckLimit => "500.00",
-              :termPeripheral => "63",
-              :termTypeID => "16",
-              :termVerificationOnly => "0",
-            })
-            xml.NewTerminal({
-              :termCrossRefID => "296225",
-              :termCheckLimit => "500.00",
-              :termPeripheral => "63",
-              :termTypeID => "637",
-              :termVerificationOnly => "0",
-            })
+            # More NewTerminal entries
           end
         end
       end
