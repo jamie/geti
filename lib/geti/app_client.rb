@@ -229,18 +229,18 @@ class Geti::AppClient < Geti::Client
           :merchZip           => opts[:zip],
           :merchPhone         => opts[:phone],
           # TODO: Fax number
-          :merchAchFlatFee    => "0.29",
-          :merchNonAchFlatFee => "0.29",
-          :merchPercentFee    => "1.89",
+          :merchAchFlatFee    => "",
+          :merchNonAchFlatFee => "",
+          :merchPercentFee    => "",
           :merchComments      => "",
-          :merchReturnFee     => "1.00",
+          :merchReturnFee     => "",
           # TODO: Web Address
           # TODO: Email address
         }) do
           xml.BusinessInfo({
             :merchOwnership => MERCHANT_OWNERSHIP.index(opts[:business_type]),
-            :merchAvgCheckAmount => "50.00",
-            :merchMaxCheckAmount => "200.00",
+            :merchAvgCheckAmount => "0.01",
+            :merchMaxCheckAmount => "0.01",
             :merchTotalTimeInBusiness => opts[:days_in_business],
           })
           xml.NewLocation({
@@ -251,8 +251,8 @@ class Geti::AppClient < Geti::Client
             :locState          => opts[:physical_state],
             :locZip            => opts[:physical_zip],
             :locPhone          => opts[:physical_phone],
-            :locStatementFee   => "10.00",
-            :locMinimumFee     => "25.00",
+            :locStatementFee   => "0",
+            :locMinimumFee     => "0",
             :locFeesRoutingNum => "490000018",
             :locFeesAccountNum => "123456789",
             # TODO: Days in operation at this location?
@@ -281,7 +281,7 @@ class Geti::AppClient < Geti::Client
               :pocComments => "",
             })
             xml.NewTerminal({
-              :termCrossRefID       => "41680",
+              :termCrossRefID       => opts[:id],
               :termCheckLimit       => "500.00",
               :termPeripheral       => "63",
               :termTypeID           => "16",
