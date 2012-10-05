@@ -1,14 +1,28 @@
 require 'helper'
 
 class Geti::Client
-  def stub_soap_client!(client)
-    @soap_client = client
-  end
+  attr_writer :soap_client, :xml_parser
 end
 
 describe Geti::AppClient do
   before do
     @soap_mock = MiniTest::Mock.new
+  end
+
+  def mock_soap!(client, parsed_response, operation, op_key=nil)
+    op_key ||= operation.gsub(/(.)([A-Z])/, '\1_\2').downcase
+    response_key = (op_key+'_response').to_sym
+    result_key = (op_key+'_result').to_sym
+
+    data = OpenStruct.new(:body => {response_key => {result_key => :encoded_xml}})
+
+    soap_mock = MiniTest::Mock.new
+    soap_mock.expect(:request, data, [operation])
+    client.soap_client = soap_mock
+
+    xml_mock = MiniTest::Mock.new
+    xml_mock.expect(:parse, parsed_response, [:encoded_xml])
+    client.xml_parser = xml_mock
   end
 
   def request_payload
@@ -53,45 +67,40 @@ describe Geti::AppClient do
   end
 
   def success_response
-    OpenStruct.new(:body => {
-      :board_certification_merchant_ach_response => {
-        :board_certification_merchant_ach_result => {
-#          :status=>"Approved",
-          #    :message=>
-          #     "1 merchant(s) created.\n0 merchant(s) not created due to errors.\n\n-----------------------\nMerchants Created:\nCogsley's Cogs (ISO ID: 9999, CrossRef: 123456, Status: AppApprovedandActivated)\n\n",
-          #    :app_data=>
-          #     {:merchant=>
-          #       {:@name=>"Cogsley's Cogs",
-          #        :@active=>"1",
-          #        :@type=>"Merchant",
-          #        :@cross_ref_id=>"123456",
-          #        :@id=>"20",
-          #        :location=>
-          #         {:terminal=>
-          #           {:@manual_entry=>"N",
-          #            :@name=>"Lipman Nurit 3000-01 (111163) ",
-          #            :@active=>"1",
-          #            :@type=>"Terminal",
-          #            :@cross_ref_id=>"41680",
-          #            :@id=>"111163",
-          #            :@mid=>"101-111163-606"},
-          #          :@name=>"Cogsley's Cogs ",
-          #          :@active=>"1",
-          #          :@ach_name=>"COGSLEYSCOGS",
-          #          :@type=>"Location",
-          #          :@cross_ref_id=>"123456",
-          #          :@id=>"31"},
-          #        :poc1=>
-          #         {:@password=>"UGPRDGIX",
-          #          :@user_name=>"CCogsley",
-          #          :@last_name=>"Cogsley",
-          #          :@first_name=>"Carl"}}},
-          #    :"@xmlns:xsd"=>"http://www.w3.org/2001/XMLSchema",
-          #    :"@xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance",
-          #    :validation_message=>{:result=>"Passed", :schema_file_path=>nil}
-        }
-      }
-    })
+    {
+      :status=>"Approved",
+      :message=>"1 merchant(s) created.\n0 merchant(s) not created due to errors.\n\n-----------------------\nMerchants Created:\nCogsley's Cogs (ISO ID: 9999, CrossRef: 123456, Status: AppApprovedandActivated)\n\n",
+      :app_data=>{
+        :merchant=>{
+          :@name=>"Cogsley's Cogs",
+          :@active=>"1",
+          :@type=>"Merchant",
+          :@cross_ref_id=>"123456",
+          :@id=>"20",
+          :location=>{
+            :terminal=>{
+              :@manual_entry=>"N",
+              :@name=>"Lipman Nurit 3000-01 (111163) ",
+              :@active=>"1",
+              :@type=>"Terminal",
+              :@cross_ref_id=>"41680",
+              :@id=>"111163",
+              :@mid=>"101-111163-606"},
+            :@name=>"Cogsley's Cogs ",
+            :@active=>"1",
+            :@ach_name=>"COGSLEYSCOGS",
+            :@type=>"Location",
+            :@cross_ref_id=>"123456",
+            :@id=>"31"},
+          :poc1=>{
+            :@password=>"UGPRDGIX",
+            :@user_name=>"CCogsley",
+            :@last_name=>"Cogsley",
+            :@first_name=>"Carl"}}},
+      :"@xmlns:xsd"=>"http://www.w3.org/2001/XMLSchema",
+      :"@xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance",
+      :validation_message=>{:result=>"Passed", :schema_file_path=>nil}
+    }
   end
 
   def error_response
@@ -125,16 +134,14 @@ describe Geti::AppClient do
 
   describe '#board_merchant_ach' do
     it 'calls BoardCertificationMerchant_ACH' do
-      @soap_mock.expect(:request, success_response, ["BoardCertificationMerchant_ACH"])
       client = Geti::AppClient.new(test_app_credentials, {})
-      client.stub_soap_client!(@soap_mock)
+      mock_soap!(client, success_response, "BoardCertificationMerchant_ACH", "board_certification_merchant_ach")
       client.board_merchant_ach(request_payload)
     end
 
     it 'calls BoardMerchant_ACH in production' do
-      @soap_mock.expect(:request, success_response, ["BoardMerchant_ACH"])
       client = Geti::AppClient.new(test_app_credentials, {}, 'production')
-      client.stub_soap_client!(@soap_mock)
+      mock_soap!(client, success_response, "BoardMerchant_ACH", "board_certification_merchant_ach")
       client.board_merchant_ach(request_payload)
     end
   end
