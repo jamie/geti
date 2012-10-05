@@ -232,15 +232,15 @@ class Geti::AppClient < Geti::Client
           :merchAchFlatFee    => "",
           :merchNonAchFlatFee => "",
           :merchPercentFee    => "",
-          :merchComments      => "",
+          :merchComments      => taxpayer_info(opts),
           :merchReturnFee     => "",
           # TODO: Web Address
           # TODO: Email address
         }) do
           xml.BusinessInfo({
             :merchOwnership => MERCHANT_OWNERSHIP.index(opts[:business_type]),
-            :merchAvgCheckAmount => "0.01",
-            :merchMaxCheckAmount => "0.01",
+            :merchAvgCheckAmount => opts[:average_amount],
+            :merchMaxCheckAmount => opts[:max_amount],
             :merchTotalTimeInBusiness => opts[:days_in_business],
           })
           xml.NewLocation({
@@ -253,8 +253,8 @@ class Geti::AppClient < Geti::Client
             :locPhone          => opts[:physical_phone],
             :locStatementFee   => "0",
             :locMinimumFee     => "0",
-            :locFeesRoutingNum => "490000018",
-            :locFeesAccountNum => "123456789",
+            :locFeesRoutingNum => opts[:routing_number],
+            :locFeesAccountNum => opts[:account_number],
             # TODO: Days in operation at this location?
           }) do
             xml.Statement({
@@ -305,5 +305,9 @@ class Geti::AppClient < Geti::Client
       },
       :attributes! => { "RemoteAccessHeader" => {"xmlns"=>"http://tempuri.org/GETI.eMagnus.WebServices/AppGateway"}}
     }
+  end
+
+  def taxpayer_info(opts)
+    "Tax Info: %s - %d" % [opts[:taxpayer_name], opts[:taxpayer_id]]
   end
 end

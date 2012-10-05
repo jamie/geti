@@ -32,6 +32,15 @@ describe Geti::AppClient do
         :principal_zip        => "10120",
         :principal_dob        => "1965-04-28",
         :principal_ssn        => '111222123',
+
+        :average_amount       => "4000",
+        :max_amount           => "7600",
+
+        :taxpayer_name => "Carl Cogsley",
+        :taxpayer_id   => "123456789",
+
+        :routing_number => "490000018",
+        :account_number => "123456789",
       })
       response[:status].must_equal "Pending"
       response[:message].must_match /CrossRef: 123456/
