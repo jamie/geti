@@ -25,13 +25,18 @@ class Geti::Client
     end
 
     op_key ||= operation.gsub(/(.)([A-Z])/, '\1_\2').downcase
+    operation.sub!('_certification','') unless certification?
     response_key = (op_key+'_response').to_sym
     result_key = (op_key+'_result').to_sym
 
-    Nori.parse(response.body[response_key][result_key])
+    xml_parser.parse(response.body[response_key][result_key])
   end
 
   def certification?
     @env != 'production'
+  end
+
+  def xml_parser
+    @xml_parser or Nori
   end
 end
