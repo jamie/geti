@@ -5,10 +5,6 @@ class Geti::Client
 end
 
 describe Geti::AppClient do
-  before do
-    @soap_mock = MiniTest::Mock.new
-  end
-
   def mock_soap!(client, parsed_response, operation, op_key=nil)
     op_key ||= operation.gsub(/(.)([A-Z])/, '\1_\2').downcase
     response_key = (op_key+'_response').to_sym
