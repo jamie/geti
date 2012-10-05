@@ -154,62 +154,6 @@ class Geti::AppClient < Geti::Client
     response = soap_request("BoardCertificationMerchant_ACH", "board_certification_merchant_ach") do |xml|
       data_packet(xml, application)
     end
-    # success_response = {:status=>"Approved",
-    #    :message=>
-    #     "1 merchant(s) created.\n0 merchant(s) not created due to errors.\n\n-----------------------\nMerchants Created:\nCogsley's Cogs (ISO ID: 9999, CrossRef: 123456, Status: AppApprovedandActivated)\n\n",
-    #    :app_data=>
-    #     {:merchant=>
-    #       {:@name=>"Cogsley's Cogs",
-    #        :@active=>"1",
-    #        :@type=>"Merchant",
-    #        :@cross_ref_id=>"123456",
-    #        :@id=>"20",
-    #        :location=>
-    #         {:terminal=>
-    #           {:@manual_entry=>"N",
-    #            :@name=>"Lipman Nurit 3000-01 (111163) ",
-    #            :@active=>"1",
-    #            :@type=>"Terminal",
-    #            :@cross_ref_id=>"41680",
-    #            :@id=>"111163",
-    #            :@mid=>"101-111163-606"},
-    #          :@name=>"Cogsley's Cogs ",
-    #          :@active=>"1",
-    #          :@ach_name=>"COGSLEYSCOGS",
-    #          :@type=>"Location",
-    #          :@cross_ref_id=>"123456",
-    #          :@id=>"31"},
-    #        :poc1=>
-    #         {:@password=>"UGPRDGIX",
-    #          :@user_name=>"CCogsley",
-    #          :@last_name=>"Cogsley",
-    #          :@first_name=>"Carl"}}},
-    #    :"@xmlns:xsd"=>"http://www.w3.org/2001/XMLSchema",
-    #    :"@xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance",
-    #    :validation_message=>{:result=>"Passed", :schema_file_path=>nil}}
-    # error_response = {:"@xmlns:xsd"=>"http://www.w3.org/2001/XMLSchema",
-    #   :"@xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance",
-    #   :validation_message=>
-    #    {:result=>"Failed",
-    #     :schema_file_path=>
-    #      "http://demo.eftchecks.com/WebServices/schemas/app/NewMerchApp_ACH.xsd",
-    #     :validation_error=>
-    #      [{:@line_number=>"1",
-    #        :severity=>"Error",
-    #        :message=>"The 'pocAddress1' attribute is not declared.",
-    #        :@line_position=>"1193"},
-    #       {:@line_number=>"1",
-    #        :severity=>"Error",
-    #        :message=>"The required attribute 'pocAddress' is missing.",
-    #        :@line_position=>"1020"}]}}
-    # repeat_response = {:status=>"Pending",
-    #   :message=>
-    #    "1 merchant(s) created.\n0 merchant(s) not created due to errors.\n\n-----------------------\nMerchants Created:\nCogsley's Cogs (ISO ID: 9999, CrossRef: 123456, Status: PendingInput)\n\n",
-    #   :validation_message=>{:result=>"Passed", :schema_file_path=>nil},
-    #   :"@xmlns:xsd"=>"http://www.w3.org/2001/XMLSchema",
-    #   :"@xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance",
-    #   :app_data=>{:merchant=>{:@id=>"21"}}}
-    # 
     response[:response]
   end
 
