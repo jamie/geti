@@ -1,9 +1,5 @@
 require 'helper'
 
-class Geti::Client
-  attr_writer :soap_client, :xml_parser
-end
-
 describe Geti::AuthClient do
   def mock_soap!(client, parsed_response, operation, op_key=nil)
     op_key ||= operation.gsub(/(.)([A-Z])/, '\1_\2').downcase
@@ -12,13 +8,8 @@ describe Geti::AuthClient do
 
     data = OpenStruct.new(:body => {response_key => {result_key => :encoded_xml}})
 
-    soap_mock = MiniTest::Mock.new
-    soap_mock.expect(:request, data, [operation])
-    client.soap_client = soap_mock
-
-    xml_mock = MiniTest::Mock.new
-    xml_mock.expect(:parse, parsed_response, [:encoded_xml])
-    client.xml_parser = xml_mock
+    client.soap_client.should_receive(:request).with(operation).and_return(data)
+    client.xml_parser.should_receive(:parse).with(:encoded_xml).and_return(parsed_response)
   end
 
   describe '#get_terminal_settings' do

@@ -42,8 +42,8 @@ describe Geti::AppClient do
         :routing_number => "490000018",
         :account_number => "123456789",
       })
-      response[:status].must_equal "Pending"
-      response[:message].must_match /CrossRef: 123456/
+      expect(response[:status]).to eq("Pending")
+      expect(response[:message]).to match(/CrossRef: 123456/)
     end
   end
 end
