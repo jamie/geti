@@ -13,19 +13,19 @@ describe Geti::AuthClient do
     it 'gets a successful WEB response' do
       client = Geti::AuthClient.new(test_credentials, {:sec_code => 'WEB', :verify => []})
       terminal_settings = client.get_terminal_settings
-      terminal_settings.terminal_id.must_equal "2310"
+      expect(terminal_settings.terminal_id).to eq("2310")
     end
 
     it 'gets a successful PPD response' do
       client = Geti::AuthClient.new(test_credentials, {:sec_code => 'PPD', :verify => []})
       terminal_settings = client.get_terminal_settings
-      terminal_settings.terminal_id.must_equal "1010"
+      expect(terminal_settings.terminal_id).to eq("1010")
     end
 
     it 'gets a restricted WEB response' do
       client = Geti::AuthClient.new(test_credentials, {:sec_code => 'WEB', :verify => [:dl]})
       terminal_settings = client.get_terminal_settings
-      terminal_settings.terminal_id.must_equal "2311"
+      expect(terminal_settings.terminal_id).to eq("2311")
     end
   end
 
@@ -33,9 +33,9 @@ describe Geti::AuthClient do
     it 'gets a failed WEB response' do
       client = Geti::AuthClient.new(test_credentials, {:sec_code => 'WEB', :verify => []})
       response = client.validate({})
-      response.validation.result.must_equal "Failed"
-      response.wont_be :success?
-      response.errors.must_include "The 'CHECK_AMOUNT' element has an invalid value according to its data type."
+      expect(response.validation.result).to eq("Failed")
+      expect(response).to_not be_success
+      expect(response.errors).to include("The 'CHECK_AMOUNT' element has an invalid value according to its data type.")
     end
 
     it 'gets a successful WEB response' do
@@ -49,9 +49,9 @@ describe Geti::AuthClient do
         :routing_number => '123456778',
         :account_number => '1234567890'
       })
-      response.validation.result.must_equal "Passed"
-      response.must_be :success?
-      response.errors.must_be_empty
+      expect(response.validation.result).to eq("Passed")
+      expect(response).to be_success
+      expect(response.errors).to be_empty
     end
   end
 
@@ -59,9 +59,9 @@ describe Geti::AuthClient do
     it 'gets a failed WEB response' do
       client = Geti::AuthClient.new(test_credentials, {:sec_code => 'WEB', :verify => []})
       response = client.process({})
-      response.validation.result.must_equal "Failed"
-      response.wont_be :success?
-      response.errors.must_include "The 'CHECK_AMOUNT' element has an invalid value according to its data type."
+      expect(response.validation.result).to eq("Failed")
+      expect(response).to_not be_success
+      expect(response.errors).to include("The 'CHECK_AMOUNT' element has an invalid value according to its data type.")
     end
 
     it 'gets an exception' do
@@ -75,8 +75,8 @@ describe Geti::AuthClient do
         :routing_number => '123456778',
         :account_number => '1234567890'
       })
-      response.wont_be :success?
-      response.exception.message.wont_be_empty
+      expect(response).to_not be_success
+      expect(response.exception.message).to_not be_empty
     end
 
     it 'gets a successful WEB response' do
@@ -90,10 +90,10 @@ describe Geti::AuthClient do
         :routing_number => routing_number(:authorization),
         :account_number => '1234567890'
       })
-      response.validation.result.must_equal "Passed"
-      response.must_be :success?
-      response.errors.must_be_empty
-      response.authorization.message.must_equal "APPROVAL"
+      expect(response.validation.result).to eq("Passed")
+      expect(response).to be_success
+      expect(response.errors).to be_empty
+      expect(response.authorization.message).to eq("APPROVAL")
     end
   end
 end
