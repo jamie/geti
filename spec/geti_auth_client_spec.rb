@@ -1,6 +1,6 @@
 require 'helper'
 
-class Geti::AuthClient
+class Geti::Client
   def stub_soap_client!(client)
     @soap_client = client
   end
