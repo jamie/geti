@@ -12,5 +12,9 @@ group :development do
 end
 
 group :test do
-  gem 'minitest'
+  gem 'rspec'
+  gem 'fuubar'
+  gem 'guard'
+  gem 'guard-rspec'
+  gem 'rb-fsevent', '~> 0.9.1'
 end
