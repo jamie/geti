@@ -54,7 +54,7 @@ describe Geti::AppClient do
   end
 
   def success_response
-    {
+    {:response=>{
       :status=>"Approved",
       :message=>"1 merchant(s) created.\n0 merchant(s) not created due to errors.\n\n-----------------------\nMerchants Created:\nCogsley's Cogs (ISO ID: 9999, CrossRef: 123456, Status: AppApprovedandActivated)\n\n",
       :app_data=>{
@@ -86,37 +86,37 @@ describe Geti::AppClient do
             :@first_name=>"Carl"}}},
       :"@xmlns:xsd"=>"http://www.w3.org/2001/XMLSchema",
       :"@xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance",
-      :validation_message=>{:result=>"Passed", :schema_file_path=>nil}
-    }
+      :validation_message=>{:result=>"Passed", :schema_file_path=>nil}}}
   end
 
   def error_response
-    # error_response = {:"@xmlns:xsd"=>"http://www.w3.org/2001/XMLSchema",
-    #   :"@xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance",
-    #   :validation_message=>
-    #    {:result=>"Failed",
-    #     :schema_file_path=>
-    #      "http://demo.eftchecks.com/WebServices/schemas/app/NewMerchApp_ACH.xsd",
-    #     :validation_error=>
-    #      [{:@line_number=>"1",
-    #        :severity=>"Error",
-    #        :message=>"The 'pocAddress1' attribute is not declared.",
-    #        :@line_position=>"1193"},
-    #       {:@line_number=>"1",
-    #        :severity=>"Error",
-    #        :message=>"The required attribute 'pocAddress' is missing.",
-    #        :@line_position=>"1020"}]}}
+    {:response=>{
+      :"@xmlns:xsd"=>"http://www.w3.org/2001/XMLSchema",
+      :"@xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance",
+      :validation_message=>
+       {:result=>"Failed",
+        :schema_file_path=>
+         "http://demo.eftchecks.com/WebServices/schemas/app/NewMerchApp_ACH.xsd",
+        :validation_error=>
+         [{:@line_number=>"1",
+           :severity=>"Error",
+           :message=>"The 'pocAddress1' attribute is not declared.",
+           :@line_position=>"1193"},
+          {:@line_number=>"1",
+           :severity=>"Error",
+           :message=>"The required attribute 'pocAddress' is missing.",
+           :@line_position=>"1020"}]}}}
   end
 
   def repeat_response
-    # repeat_response = {:status=>"Pending",
-    #   :message=>
-    #    "1 merchant(s) created.\n0 merchant(s) not created due to errors.\n\n-----------------------\nMerchants Created:\nCogsley's Cogs (ISO ID: 9999, CrossRef: 123456, Status: PendingInput)\n\n",
-    #   :validation_message=>{:result=>"Passed", :schema_file_path=>nil},
-    #   :"@xmlns:xsd"=>"http://www.w3.org/2001/XMLSchema",
-    #   :"@xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance",
-    #   :app_data=>{:merchant=>{:@id=>"21"}}}
-    # 
+    {:response=>{
+      :status=>"Pending",
+      :message=>
+       "1 merchant(s) created.\n0 merchant(s) not created due to errors.\n\n-----------------------\nMerchants Created:\nCogsley's Cogs (ISO ID: 9999, CrossRef: 123456, Status: PendingInput)\n\n",
+      :validation_message=>{:result=>"Passed", :schema_file_path=>nil},
+      :"@xmlns:xsd"=>"http://www.w3.org/2001/XMLSchema",
+      :"@xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance",
+      :app_data=>{:merchant=>{:@id=>"21"}}}}
   end
 
   describe '#board_merchant_ach' do
@@ -130,6 +130,30 @@ describe Geti::AppClient do
       client = Geti::AppClient.new(test_app_credentials, {}, 'production')
       mock_soap!(client, success_response, "BoardMerchant_ACH", "board_certification_merchant_ach")
       client.board_merchant_ach(request_payload)
+    end
+
+    describe 'response on success' do
+      let(:client) {
+        Geti::AppClient.new(test_app_credentials, {}).tap{|c|
+          mock_soap!(c, response, "BoardCertificationMerchant_ACH", "board_certification_merchant_ach")
+        }
+      }
+      subject { client.board_merchant_ach(request_payload) }
+
+      describe 'on success' do
+        let(:response) { success_response }
+        its([:status]) { should eq("Approved") }
+      end
+
+      describe 'on repeat' do
+        let(:response) { repeat_response }
+        its([:status]) { should eq("Pending") }
+      end
+
+      describe 'on error' do
+        let(:response) { error_response }
+        its([:status]) { should be_nil }
+      end
     end
   end
 end
