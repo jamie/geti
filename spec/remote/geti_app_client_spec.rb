@@ -3,10 +3,11 @@ require 'helper'
 describe Geti::AppClient do
   describe '#board_merchant_ach' do
     it 'has a successful response' do
+      t = Time.now.to_i
       client = Geti::AppClient.new(test_app_credentials, {})
       response = client.board_merchant_ach({
-        :id               => 123456,
-        :name             => "Cogsley's Cogs",
+        :id               => t,
+        :name             => "Cogsley's Cogs %d" % t,
         :industry         => "Metal_Fabricators",
         :address          => "123 Main St",
         :city             => "Vancouver",
@@ -42,8 +43,8 @@ describe Geti::AppClient do
         :routing_number => "490000018",
         :account_number => "123456789",
       })
-      expect(response[:status]).to eq("Pending")
-      expect(response[:message]).to match(/CrossRef: 123456/)
+      expect(response[:status]).to eq("Approved")
+      expect(response[:message]).to match(/CrossRef: #{t}/)
     end
   end
 end
