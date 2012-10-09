@@ -142,16 +142,23 @@ describe Geti::AppClient do
 
       describe 'on success' do
         let(:response) { success_response }
+        its([:success]) { should be_true }
         its([:status]) { should eq("Approved") }
+
+        it 'normalizes (nested) keys' do
+          subject[:app_data][:merchant][:id].should eq("20")
+        end
       end
 
       describe 'on repeat' do
         let(:response) { repeat_response }
+        its([:success]) { should be_true }
         its([:status]) { should eq("Pending") }
       end
 
       describe 'on error' do
         let(:response) { error_response }
+        its([:success]) { should be_false }
         its([:status]) { should be_nil }
       end
     end

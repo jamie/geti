@@ -154,7 +154,7 @@ class Geti::AppClient < Geti::Client
     response = soap_request("BoardCertificationMerchant_ACH", "board_certification_merchant_ach") do |xml|
       data_packet(xml, application)
     end
-    response[:response]
+    annotate_board_merchant_ach_response(response[:response])
   end
 
   def data_packet(xml, opts)
@@ -253,5 +253,25 @@ class Geti::AppClient < Geti::Client
 
   def taxpayer_info(opts)
     "Tax Info: %s - %d" % [opts[:taxpayer_name], opts[:taxpayer_id]]
+  end
+
+private
+  def annotate_board_merchant_ach_response(response)
+    response[:success] = response[:validation_message][:result] == "Passed"
+    response.delete(:"@xmlns:xsd")
+    response.delete(:"@xmlns:xsi")
+    remove_key_at_signs!(response)
+    response
+  end
+
+  def remove_key_at_signs!(hash)
+    hash.keys.each do |key|
+      if hash[key].kind_of? Hash
+        remove_key_at_signs!(hash[key])
+      end
+      if key.to_s[0..0] == '@'
+        hash[key.to_s.sub('@','').to_sym] = hash.delete(key)
+      end
+    end
   end
 end
