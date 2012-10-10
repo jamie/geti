@@ -17,8 +17,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "geti"
   gem.homepage = "http://github.com/jamie/geti"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{API wrapper for GETI, an ACH provider}
+  gem.description = %Q{API wrapper for GETI, an ACH provider}
   gem.email = "jamie@tracefunc.com"
   gem.authors = ["Jamie Macey"]
   # dependencies defined in Gemfile
