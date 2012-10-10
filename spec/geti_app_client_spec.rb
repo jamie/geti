@@ -121,20 +121,20 @@ describe Geti::AppClient do
 
   describe '#board_merchant_ach' do
     it 'calls BoardCertificationMerchant_ACH' do
-      client = Geti::AppClient.new(test_app_credentials, {})
+      client = Geti::AppClient.new(test_credentials, {})
       mock_soap!(client, success_response, "BoardCertificationMerchant_ACH", "board_certification_merchant_ach")
       client.board_merchant_ach(request_payload)
     end
 
     it 'calls BoardMerchant_ACH in production' do
-      client = Geti::AppClient.new(test_app_credentials, {}, 'production')
+      client = Geti::AppClient.new(test_credentials, {}, 'production')
       mock_soap!(client, success_response, "BoardMerchant_ACH", "board_certification_merchant_ach")
       client.board_merchant_ach(request_payload)
     end
 
     describe 'response on success' do
       let(:client) {
-        Geti::AppClient.new(test_app_credentials, {}).tap{|c|
+        Geti::AppClient.new(test_credentials, {}).tap{|c|
           mock_soap!(c, response, "BoardCertificationMerchant_ACH", "board_certification_merchant_ach")
         }
       }

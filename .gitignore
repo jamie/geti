@@ -1,3 +1,5 @@
+config/test_credentials.yml
+
 # rcov generated
 coverage
 coverage.data

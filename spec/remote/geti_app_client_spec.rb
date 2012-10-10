@@ -4,7 +4,7 @@ describe Geti::AppClient do
   describe '#board_merchant_ach' do
     it 'has a successful response' do
       t = Time.now.to_i
-      client = Geti::AppClient.new(test_app_credentials, {})
+      client = Geti::AppClient.new(test_credentials, {})
       response = client.board_merchant_ach({
         :id               => t,
         :name             => "Cogsley's Cogs %d" % t,

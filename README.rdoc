@@ -2,6 +2,10 @@
 
 Description goes here.
 
+== Running Specs
+
+Just run `rspec`. If you want to run the specs in the remote dir, you'll need to provide `config/test_credentials.yml` (an example file is present).
+
 == Contributing to geti
  
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.
