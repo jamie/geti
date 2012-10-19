@@ -2,7 +2,7 @@ require 'savon'
 require 'httpi'
 
 class Geti::Client
-  def initialize(auth, terminal_opts, env='test')
+  def initialize(auth, terminal_opts={}, env='test')
     @user = auth[:user]
     @pass = auth[:pass]
     @env = env

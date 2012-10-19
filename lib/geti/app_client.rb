@@ -154,7 +154,14 @@ class Geti::AppClient < Geti::Client
     response = soap_request("BoardCertificationMerchant_ACH", "board_certification_merchant_ach") do
       data_packet { |xml| data(xml, application) }
     end
-    annotate_board_merchant_ach_response(response[:response])
+    annotate_response(response[:response])
+  end
+
+  def retrieve_merchant_status(id)
+    response = soap_request("RetrieveCertificationMerchantStatus") do
+      {'MerchantID' => id}
+    end
+    annotate_response(response[:response])
   end
 
   def data(xml, opts)
@@ -256,7 +263,7 @@ class Geti::AppClient < Geti::Client
   end
 
 private
-  def annotate_board_merchant_ach_response(response)
+  def annotate_response(response)
     response[:success] = response[:validation_message][:result] == "Passed"
     response.delete(:"@xmlns:xsd")
     response.delete(:"@xmlns:xsi")
