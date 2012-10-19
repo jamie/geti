@@ -20,8 +20,8 @@ class Geti::AuthClient < Geti::Client
   # but no authorization.
   # NOTE: CERTIFICATION SERVER ONLY
   def validate(opts)
-    response = soap_request("AuthGatewayCertification") do |xml|
-      data_packet(xml, opts)
+    response = soap_request("AuthGatewayCertification") do
+      data_packet { |xml| data(xml, opts) }
     end
     Geti::Response.new(response)
   end
@@ -29,14 +29,14 @@ class Geti::AuthClient < Geti::Client
   # Creates an authorization for funds transfer. Returns a Result
   # with both validation and (if valid) authorization responses.
   def process(opts)
-    response = soap_request("ProcessSingleCertificationCheck") do |xml|
-      data_packet(xml, opts)
+    response = soap_request("ProcessSingleCertificationCheck") do
+      data_packet { |xml| data(xml, opts) }
     end
     Geti::Response.new(response)
   end
 
 
-  def data_packet(xml, opts)
+  def data(xml, opts)
     xml.AUTH_GATEWAY do # has an optional REQUEST_ID attribute for later lookups
       xml.TRANSACTION do
         xml.TRANSACTION_ID
