@@ -151,13 +151,13 @@ class Geti::AppClient < Geti::Client
   }
 
   def board_merchant_ach(application)
-    response = soap_request("BoardCertificationMerchant_ACH", "board_certification_merchant_ach") do |xml|
-      data_packet(xml, application)
+    response = soap_request("BoardCertificationMerchant_ACH", "board_certification_merchant_ach") do
+      data_packet { |xml| data(xml, application) }
     end
     annotate_board_merchant_ach_response(response[:response])
   end
 
-  def data_packet(xml, opts)
+  def data(xml, opts)
     xml.Envelope do
       xml.Body :FileName => "261407_28_May_2009_12_05_00_590.xml", :FileDate => Time.now.iso8601 do
         xml.NewMerchant({

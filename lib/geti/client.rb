@@ -12,16 +12,20 @@ class Geti::Client
     @soap_client ||= Savon.client(service_address)
   end
 
+  def data_packet
+    xml = Builder::XmlMarkup.new
+    xml.instruct!
+    yield xml
+    content = xml.target!
+    {"DataPacket" => content}
+  end
+
   def soap_request(operation, op_key=nil)
     operation.sub!('Certification','') unless certification?
     response = soap_client.request operation do
       http.headers.delete('SOAPAction')
       config.soap_header = soap_header
-      xml = Builder::XmlMarkup.new
-      xml.instruct!
-      yield xml if block_given?
-      content = xml.target!
-      soap.body = {"DataPacket" => content}
+      soap.body = (yield if block_given?)
     end
 
     op_key ||= operation.gsub(/(.)([A-Z])/, '\1_\2').downcase
