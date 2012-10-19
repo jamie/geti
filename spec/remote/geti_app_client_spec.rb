@@ -66,4 +66,15 @@ describe Geti::AppClient do
       expect(response[:message]).to eq("Merchant Approved")
     end
   end
+
+  describe '#upload_supporting_docs' do
+    it 'returns data' do
+      client = Geti::AppClient.new(test_credentials)
+      response = client.board_merchant_ach(merchant_params(@timestamp+2))
+
+      response = client.upload_supporting_docs(response[:app_data][:merchant][:id], File.read('./spec/remote/sample.pdf'))
+      expect(response[:status]).to eq("Approved")
+      expect(response[:message]).to match("Document uploaded successfuly")
+    end
+  end
 end

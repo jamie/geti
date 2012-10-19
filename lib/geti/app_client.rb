@@ -164,6 +164,15 @@ class Geti::AppClient < Geti::Client
     annotate_response(response[:response])
   end
 
+  def upload_supporting_docs(id, filedata)
+    response = soap_request("UploadCertificationSupportingDocs") do
+      { 'MerchantID' => id,
+        'DataPacket' => Base64.encode64(filedata)
+      }
+    end
+    annotate_response(response[:response])
+  end
+
   def data(xml, opts)
     xml.Envelope do
       xml.Body :FileName => "261407_28_May_2009_12_05_00_590.xml", :FileDate => Time.now.iso8601 do
