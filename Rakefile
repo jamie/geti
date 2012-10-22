@@ -21,6 +21,7 @@ Jeweler::Tasks.new do |gem|
   gem.description = %Q{API wrapper for GETI, an ACH provider}
   gem.email = "jamie@tracefunc.com"
   gem.authors = ["Jamie Macey"]
+  gem.files.exclude "doc/*.pdf"
   # dependencies defined in Gemfile
 end
 Jeweler::RubygemsDotOrgTasks.new
