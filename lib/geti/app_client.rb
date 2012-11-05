@@ -256,7 +256,7 @@ class Geti::AppClient < Geti::Client
   end
 
   def service_address
-    "https://demo.eftchecks.com/webservices/AppGateway.asmx?WSDL"
+    "https://#{domain}/webservices/AppGateway.asmx?WSDL"
   end
 
   def soap_header

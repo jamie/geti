@@ -40,6 +40,14 @@ class Geti::Client
     @env != 'production'
   end
 
+  def domain
+    if certification?
+      'demo.eftchecks.com'
+    else
+      'getigateway.eftchecks.com'
+    end
+  end
+
   def xml_parser
     @xml_parser or Nori
   end
