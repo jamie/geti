@@ -174,14 +174,15 @@ class Geti::AppClient < Geti::Client
   end
 
   def data(xml, opts)
+    filename = "%s_%s.xml" % [opts[:id].to_s, Time.now.strftime("%d_%b_%Y_%H_%M_%S")]
     xml.Envelope do
-      xml.Body :FileName => "261407_28_May_2009_12_05_00_590.xml", :FileDate => Time.now.iso8601 do
+      xml.Body :FileName => filename, :FileDate => Time.now.iso8601 do
         xml.NewMerchant({
-          :isoID              => "9999",
+          :isoID              => opts[:iso_id] || "9999",
           :merchCrossRefID    => opts[:id],
           :merchName          => opts[:name], # Legal Name
           :merchTypeID        => MERCHANT_TYPES.index(opts[:industry]), # "Type of goods sold"
-          :merchServiceType   => "GOLD",
+          :merchServiceType   => opts[:service_type] || "GOLD",
           # TODO: Tax ID
           :merchAddress1      => opts[:address], # TODO: Is this mailing or DBA address?
           :merchCity          => opts[:city],
@@ -268,7 +269,7 @@ class Geti::AppClient < Geti::Client
   end
 
   def taxpayer_info(opts)
-    "Tax Info: %s - %d" % [opts[:taxpayer_name], opts[:taxpayer_id]]
+    "Tax Info: %s - %s" % [opts[:taxpayer_name], opts[:taxpayer_id]]
   end
 
 private
