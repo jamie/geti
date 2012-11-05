@@ -9,21 +9,23 @@ def routing_number(type)
 end
 
 describe Geti::AuthClient do
+  let(:credentials) { test_credentials('auth') }
+
   describe '#get_terminal_settings' do
     it 'gets a successful WEB response' do
-      client = Geti::AuthClient.new(test_credentials, {:sec_code => 'WEB', :verify => []})
+      client = Geti::AuthClient.new(credentials, {:sec_code => 'WEB', :verify => []})
       terminal_settings = client.get_terminal_settings
       expect(terminal_settings.terminal_id).to eq("2310")
     end
 
     it 'gets a successful PPD response' do
-      client = Geti::AuthClient.new(test_credentials, {:sec_code => 'PPD', :verify => []})
+      client = Geti::AuthClient.new(credentials, {:sec_code => 'PPD', :verify => []})
       terminal_settings = client.get_terminal_settings
       expect(terminal_settings.terminal_id).to eq("1010")
     end
 
     it 'gets a restricted WEB response' do
-      client = Geti::AuthClient.new(test_credentials, {:sec_code => 'WEB', :verify => [:dl]})
+      client = Geti::AuthClient.new(credentials, {:sec_code => 'WEB', :verify => [:dl]})
       terminal_settings = client.get_terminal_settings
       expect(terminal_settings.terminal_id).to eq("2311")
     end
@@ -31,7 +33,7 @@ describe Geti::AuthClient do
 
   describe '#validate' do
     it 'gets a failed WEB response' do
-      client = Geti::AuthClient.new(test_credentials, {:sec_code => 'WEB', :verify => []})
+      client = Geti::AuthClient.new(credentials, {:sec_code => 'WEB', :verify => []})
       response = client.validate({})
       expect(response.validation.result).to eq("Failed")
       expect(response).to_not be_success
@@ -39,7 +41,7 @@ describe Geti::AuthClient do
     end
 
     it 'gets a successful WEB response' do
-      client = Geti::AuthClient.new(test_credentials, {:sec_code => 'WEB', :verify => []})
+      client = Geti::AuthClient.new(credentials, {:sec_code => 'WEB', :verify => []})
       response = client.validate({
         :type => :authorize,
         :amount => 1000,
@@ -57,7 +59,7 @@ describe Geti::AuthClient do
 
   describe '#process' do
     it 'gets a failed WEB response' do
-      client = Geti::AuthClient.new(test_credentials, {:sec_code => 'WEB', :verify => []})
+      client = Geti::AuthClient.new(credentials, {:sec_code => 'WEB', :verify => []})
       response = client.process({})
       expect(response.validation.result).to eq("Failed")
       expect(response).to_not be_success
@@ -65,7 +67,7 @@ describe Geti::AuthClient do
     end
 
     it 'gets an exception' do
-      client = Geti::AuthClient.new(test_credentials, {:sec_code => 'WEB', :verify => []})
+      client = Geti::AuthClient.new(credentials, {:sec_code => 'WEB', :verify => []})
       response = client.process({
         :type => :authorize,
         :amount => 1000,
@@ -80,7 +82,7 @@ describe Geti::AuthClient do
     end
 
     it 'gets a successful WEB response' do
-      client = Geti::AuthClient.new(test_credentials, {:sec_code => 'WEB', :verify => []})
+      client = Geti::AuthClient.new(credentials, {:sec_code => 'WEB', :verify => []})
       response = client.process({
         :type => :authorize,
         :amount => 1000,
