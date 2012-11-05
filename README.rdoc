@@ -1,6 +1,6 @@
 = geti
 
-Description goes here.
+A middleware gem for interfacing with Global eTelecom's ACH processing service.
 
 == Running Specs
 

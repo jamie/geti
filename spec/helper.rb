@@ -28,8 +28,8 @@ Savon.configure do |config|
   config.log = HTTPI.log = false unless ENV['SOAP_DEBUG']
 end
 
-def test_credentials
-  YAML.load(File.read('config/test_credentials.yml'))
+def test_credentials(env='app')
+  YAML.load(File.read('config/test_credentials.yml'))[env]
 end
 
 def xit(*args, &block)
