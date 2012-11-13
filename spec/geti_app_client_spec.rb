@@ -143,7 +143,7 @@ describe Geti::AppClient do
 
     it 'calls BoardMerchant_ACH in production' do
       client = Geti::AppClient.new(test_credentials, {}, 'production')
-      mock_soap!(client, pending_response, "BoardMerchant_ACH", "board_certification_merchant_ach")
+      mock_soap!(client, pending_response, "BoardMerchant_ACH", "board_merchant_ach")
       client.board_merchant_ach(request_payload)
     end
 
@@ -189,15 +189,12 @@ describe Geti::AppClient do
     end
 
     describe 'production response handling' do
-      let(:client) {
-        Geti::AppClient.new(test_credentials, {}, 'production').tap{|c|
+      it 'does not error' do
+        client = Geti::AppClient.new(test_credentials, {}, 'production').tap{|c|
           c.soap_client.should_receive(:request).with("BoardMerchant_ACH").and_return(OpenStruct.new(:body => production_soap_response))
         }
-      }
 
-      it 'does not error' do
         response = client.board_merchant_ach(request_payload)
-        p response
       end
     end
   end
