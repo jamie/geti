@@ -29,7 +29,7 @@ class Geti::Client
     end
 
     op_key ||= operation.gsub(/(.)([A-Z])/, '\1_\2').downcase
-    operation.sub!('_certification','') unless certification?
+    op_key.sub!('_certification','') unless certification?
     response_key = (op_key+'_response').to_sym
     result_key = (op_key+'_result').to_sym
 

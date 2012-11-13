@@ -53,6 +53,21 @@ describe Geti::AppClient do
     }
   end
 
+  def production_soap_response
+    Nori.parse("<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"><soap:Body><BoardMerchant_ACHResponse xmlns=\"http://tempuri.org/GETI.eMagnus.WebServices/AppGateway\"><BoardMerchant_ACHResult>&lt;?xml version=\"1.0\" encoding=\"utf-8\"?&gt;&lt;RESPONSE xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"&gt;&lt;STATUS&gt;Pending&lt;/STATUS&gt;&lt;MESSAGE&gt;1 merchant(s) created.\n0 merchant(s) not created due to errors.\n\n-----------------------\nMerchants Created:\nMy Company (ISO ID: 10150, CrossRef: 83, Status: PendingInput)\n\n&lt;/MESSAGE&gt;&lt;APP_DATA&gt;&lt;Merchant ID=\"1844832\" /&gt;&lt;/APP_DATA&gt;&lt;VALIDATION_MESSAGE&gt;&lt;RESULT&gt;Passed&lt;/RESULT&gt;&lt;SCHEMA_FILE_PATH /&gt;&lt;/VALIDATION_MESSAGE&gt;&lt;/RESPONSE&gt;</BoardMerchant_ACHResult></BoardMerchant_ACHResponse></soap:Body></soap:Envelope>\n")[:envelope][:body]
+  end
+
+  def pending_response
+    {:response=>
+      {:status=>"Pending",
+       :"@xmlns:xsd"=>"http://www.w3.org/2001/XMLSchema",
+       :"@xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance",
+       :message=>
+        "1 merchant(s) created.\n0 merchant(s) not created due to errors.\n\n-----------------------\nMerchants Created:\nMy Company (ISO ID: 10150, CrossRef: 83, Status: PendingInput)\n\n",
+       :validation_message=>{:schema_file_path=>nil, :result=>"Passed"},
+       :app_data=>{:merchant=>{:@id=>"1844832"}}}}
+  end
+
   def success_response
     {:response=>{
       :status=>"Approved",
@@ -122,13 +137,13 @@ describe Geti::AppClient do
   describe '#board_merchant_ach' do
     it 'calls BoardCertificationMerchant_ACH' do
       client = Geti::AppClient.new(test_credentials, {})
-      mock_soap!(client, success_response, "BoardCertificationMerchant_ACH", "board_certification_merchant_ach")
+      mock_soap!(client, pending_response, "BoardCertificationMerchant_ACH", "board_certification_merchant_ach")
       client.board_merchant_ach(request_payload)
     end
 
     it 'calls BoardMerchant_ACH in production' do
       client = Geti::AppClient.new(test_credentials, {}, 'production')
-      mock_soap!(client, success_response, "BoardMerchant_ACH", "board_certification_merchant_ach")
+      mock_soap!(client, pending_response, "BoardMerchant_ACH", "board_certification_merchant_ach")
       client.board_merchant_ach(request_payload)
     end
 
@@ -139,6 +154,16 @@ describe Geti::AppClient do
         }
       }
       subject { client.board_merchant_ach(request_payload) }
+
+      describe 'on pending' do
+        let(:response) { pending_response }
+        its([:success]) { should be_true }
+        its([:status]) { should eq("Pending") }
+
+        it 'normalizes (nested) keys' do
+          subject[:app_data][:merchant][:id].should eq("1844832")
+        end
+      end
 
       describe 'on success' do
         let(:response) { success_response }
@@ -160,6 +185,19 @@ describe Geti::AppClient do
         let(:response) { error_response }
         its([:success]) { should be_false }
         its([:status]) { should be_nil }
+      end
+    end
+
+    describe 'production response handling' do
+      let(:client) {
+        Geti::AppClient.new(test_credentials, {}, 'production').tap{|c|
+          c.soap_client.should_receive(:request).with("BoardMerchant_ACH").and_return(OpenStruct.new(:body => production_soap_response))
+        }
+      }
+
+      it 'does not error' do
+        response = client.board_merchant_ach(request_payload)
+        p response
       end
     end
   end
