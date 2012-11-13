@@ -245,7 +245,7 @@ class Geti::AppClient < Geti::Client
               :termCrossRefID       => opts[:id],
               :termCheckLimit       => "500.00",
               :termPeripheral       => "63",
-              :termTypeID           => "16",
+              :termTypeID           => "660",
               :termVerificationOnly => "0",
             })
             # More NewTerminal entries
