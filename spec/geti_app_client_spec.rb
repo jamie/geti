@@ -147,6 +147,46 @@ describe Geti::AppClient do
       client.board_merchant_ach(request_payload)
     end
 
+    describe 'character filtering' do
+      let(:client) { Geti::AppClient.new(test_credentials, {}) }
+
+      it 'filters city' do
+        data = request_payload.merge(:city => 'St. Johns')
+        client.filter_invalid_characters(data)[:city].should == "St Johns"
+      end
+
+      it 'filters address' do
+        data = request_payload.merge(:address => '12 Main St, Suite B!')
+        client.filter_invalid_characters(data)[:address].should == "12 Main St, Suite B"
+      end
+
+      it 'filters physical_city' do
+        data = request_payload.merge(:physical_city => 'St. Johns')
+        client.filter_invalid_characters(data)[:physical_city].should == "St Johns"
+      end
+
+      it 'filters physical_address' do
+        data = request_payload.merge(:physical_address => '12 Main St, Suite B!')
+        client.filter_invalid_characters(data)[:physical_address].should == "12 Main St, Suite B"
+      end
+
+      it 'filters principal_city' do
+        data = request_payload.merge(:principal_city => 'St. Johns')
+        client.filter_invalid_characters(data)[:principal_city].should == "St Johns"
+      end
+
+      it 'filters principal_address' do
+        data = request_payload.merge(:principal_address => '12 Main St, Suite B!')
+        client.filter_invalid_characters(data)[:principal_address].should == "12 Main St, Suite B"
+      end
+
+      it 'filters principal_ssn' do
+        data = request_payload.merge(:principal_ssn => '111-22-3333')
+        client.filter_invalid_characters(data)[:principal_ssn].should == "111223333"
+      end
+
+    end
+
     describe 'response on success' do
       let(:client) {
         Geti::AppClient.new(test_credentials, {}).tap{|c|
