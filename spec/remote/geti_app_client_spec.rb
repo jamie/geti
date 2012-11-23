@@ -18,7 +18,7 @@ describe Geti::AppClient, :remote => true do
       :days_in_business => 404,
 
       :contact_name     => 'George Jetson',
-      :physical_address => "123 Main St",
+      :physical_address => "123 Main St, Suite B",
       :physical_city    => "Vancouver",
       :physical_state   => "WA",
       :physical_zip     => "10120",

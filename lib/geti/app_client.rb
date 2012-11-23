@@ -174,6 +174,7 @@ class Geti::AppClient < Geti::Client
   end
 
   def data(xml, opts)
+    opts = filter_invalid_characters(opts)
     filename = "%s_%s.xml" % [opts[:id].to_s, Time.now.strftime("%d_%b_%Y_%H_%M_%S")]
     xml.Envelope do
       xml.Body :FileName => filename, :FileDate => Time.now.iso8601 do
@@ -253,6 +254,20 @@ class Geti::AppClient < Geti::Client
         end
       end
     end
+  end
+
+  def filter_invalid_characters(opts)
+    opts = opts.dup
+    opts[:address].gsub!(/[^a-zA-Z0-9 #-:;']/, '')
+    opts[:physical_address].gsub!(/[^a-zA-Z0-9 #-:;']/, '')
+    opts[:principal_address].gsub!(/[^a-zA-Z0-9 #-:;']/, '')
+
+    opts[:city].gsub!(/[^a-zA-Z0-9 ]/, '')
+    opts[:physical_city].gsub!(/[^a-zA-Z0-9 ]/, '')
+    opts[:principal_city].gsub!(/[^a-zA-Z0-9 ]/, '')
+
+    opts[:principal_ssn].gsub!(/[^0-9]/, '')
+    opts
   end
 
   def service_address
