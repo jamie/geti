@@ -1,6 +1,6 @@
 require 'helper'
 
-describe Geti::AppClient do
+describe Geti::AppClient, :remote => true do
   before :all do
     @timestamp = Time.now.to_i
   end

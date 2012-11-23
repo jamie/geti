@@ -8,7 +8,7 @@ def routing_number(type)
   }[type]
 end
 
-describe Geti::AuthClient do
+describe Geti::AuthClient, :remote => true do
   let(:credentials) { test_credentials('auth') }
 
   describe '#get_terminal_settings' do
