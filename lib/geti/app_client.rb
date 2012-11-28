@@ -200,7 +200,7 @@ class Geti::AppClient < Geti::Client
           # TODO: Email address
         }) do
           xml.BusinessInfo({
-            :merchOwnership => MERCHANT_OWNERSHIP.index(opts[:business_type]),
+            :merchOwnership => MERCHANT_OWNERSHIP.index((opts[:business_type]||'').gsub('_', ' ')),
             :merchAvgCheckAmount => opts[:average_amount],
             :merchMaxCheckAmount => opts[:max_amount],
             :merchTotalTimeInBusiness => opts[:days_in_business],
@@ -258,15 +258,15 @@ class Geti::AppClient < Geti::Client
 
   def filter_invalid_characters(opts)
     opts = opts.dup
-    opts[:address].gsub!(/[^a-zA-Z0-9 #-:;']/, '')
-    opts[:physical_address].gsub!(/[^a-zA-Z0-9 #-:;']/, '')
-    opts[:principal_address].gsub!(/[^a-zA-Z0-9 #-:;']/, '')
+    opts[:address].gsub!(/[^a-zA-Z0-9 #-:;']/, '') if opts[:address]
+    opts[:physical_address].gsub!(/[^a-zA-Z0-9 #-:;']/, '') if opts[:physical_address]
+    opts[:principal_address].gsub!(/[^a-zA-Z0-9 #-:;']/, '') if opts[:principal_address]
 
-    opts[:city].gsub!(/[^a-zA-Z0-9 ]/, '')
-    opts[:physical_city].gsub!(/[^a-zA-Z0-9 ]/, '')
-    opts[:principal_city].gsub!(/[^a-zA-Z0-9 ]/, '')
+    opts[:city].gsub!(/[^a-zA-Z0-9 ]/, '') if opts[:city]
+    opts[:physical_city].gsub!(/[^a-zA-Z0-9 ]/, '') if opts[:physical_city]
+    opts[:principal_city].gsub!(/[^a-zA-Z0-9 ]/, '') if opts[:principal_city]
 
-    opts[:principal_ssn].gsub!(/[^0-9]/, '')
+    opts[:principal_ssn].gsub!(/[^0-9]/, '') if opts[:principal_ssn]
     opts
   end
 
