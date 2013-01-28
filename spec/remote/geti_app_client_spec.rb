@@ -42,6 +42,8 @@ describe Geti::AppClient, :remote => true do
 
       :routing_number => "490000018",
       :account_number => "123456789",
+
+      :ip => '127.0.0.1',
     }
   end
 

@@ -50,6 +50,8 @@ describe Geti::AppClient do
 
       :routing_number => "490000018",
       :account_number => "123456789",
+
+      :ip => '127.0.0.1',
     }
   end
 
@@ -145,6 +147,23 @@ describe Geti::AppClient do
       client = Geti::AppClient.new(test_credentials, {}, 'production')
       mock_soap!(client, pending_response, "BoardMerchant_ACH", "board_merchant_ach")
       client.board_merchant_ach(request_payload)
+    end
+
+    describe 'comments field' do
+      before do
+        client = Geti::AppClient.new(test_credentials, {})
+        @xml = client.data(Builder::XmlMarkup.new, request_payload)
+      end
+
+      it 'fills with taxpayer info' do
+        @xml =~ /merchComments="([^"]+)"/
+        $1.should match("Tax Info: Carl Cogsley - 123456789")
+      end
+
+      it 'fills with signup IP' do
+        @xml =~ /merchComments="([^"]+)"/
+        $1.should match("Signup IP: 127.0.0.1")
+      end
     end
 
     describe 'character filtering' do
