@@ -194,7 +194,7 @@ class Geti::AppClient < Geti::Client
           :merchAchFlatFee    => "",
           :merchNonAchFlatFee => "",
           :merchPercentFee    => "",
-          :merchComments      => taxpayer_info(opts),
+          :merchComments      => comments(opts),
           :merchReturnFee     => "",
           # TODO: Web Address
           # TODO: Email address
@@ -281,6 +281,15 @@ class Geti::AppClient < Geti::Client
       },
       :attributes! => { "RemoteAccessHeader" => {"xmlns"=>"http://tempuri.org/GETI.eMagnus.WebServices/AppGateway"}}
     }
+  end
+
+  def comments(opts)
+    [taxpayer_info(opts), ip_address(opts)].compact.join(', ')
+  end
+
+  def ip_address(opts)
+    return unless opts[:ip]
+    "Signup IP: %s" % opts[:ip]
   end
 
   def taxpayer_info(opts)
