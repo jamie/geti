@@ -1,6 +1,6 @@
 source :rubygems
 
-gem 'savon', "<2.0"
+gem 'savon', "~> 1.0"
 gem 'httpi'
 gem 'httpclient'
 
