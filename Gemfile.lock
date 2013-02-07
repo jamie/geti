@@ -64,7 +64,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bundler (~> 1.0.0)
+  bundler
   fuubar
   guard
   guard-rspec
@@ -75,4 +75,4 @@ DEPENDENCIES
   rb-fsevent (~> 0.9.1)
   rcov
   rspec
-  savon
+  savon (< 2.0)

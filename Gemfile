@@ -1,12 +1,12 @@
 source :rubygems
 
-gem 'savon'
+gem 'savon', "<2.0"
 gem 'httpi'
 gem 'httpclient'
 
 group :development do
   gem 'rake', "< 0.9"
-  gem "bundler", "~> 1.0.0"
+  gem "bundler"
   gem "jeweler", "~> 1.8.4"
   gem "rcov"
 end
