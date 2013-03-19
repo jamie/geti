@@ -52,6 +52,7 @@ describe Geti::AppClient do
       :account_number => "123456789",
 
       :ip => '127.0.0.1',
+      :email => 'bob@example.com'
     }
   end
 
@@ -152,17 +153,37 @@ describe Geti::AppClient do
     describe 'comments field' do
       before do
         client = Geti::AppClient.new(test_credentials, {})
-        @xml = client.data(Builder::XmlMarkup.new, request_payload)
+        @full_xml = client.data(Builder::XmlMarkup.new, request_payload)
+
+        client = Geti::AppClient.new(test_credentials, {})
+        payload = request_payload.dup
+        payload.delete(:ip)
+        payload.delete(:email)
+        @sparse_xml = client.data(Builder::XmlMarkup.new, payload)
       end
 
       it 'fills with taxpayer info' do
-        @xml =~ /merchComments="([^"]+)"/
+        @full_xml =~ /merchComments="([^"]+)"/
+        $1.should match("Tax Info: Carl Cogsley - 123456789")
+
+        @sparse_xml =~ /merchComments="([^"]+)"/
         $1.should match("Tax Info: Carl Cogsley - 123456789")
       end
 
       it 'fills with signup IP' do
-        @xml =~ /merchComments="([^"]+)"/
+        @full_xml =~ /merchComments="([^"]+)"/
         $1.should match("Signup IP: 127.0.0.1")
+
+        @sparse_xml =~ /merchComments="([^"]+)"/
+        $1.should_not match("IP")
+      end
+
+      it 'fills with signup email' do
+        @full_xml =~ /merchComments="([^"]+)"/
+        $1.should match("Email: bob@example.com")
+
+        @sparse_xml =~ /merchComments="([^"]+)"/
+        $1.should_not match("Email")
       end
     end
 

@@ -284,7 +284,12 @@ class Geti::AppClient < Geti::Client
   end
 
   def comments(opts)
-    [taxpayer_info(opts), ip_address(opts)].compact.join(', ')
+    [taxpayer_info(opts), ip_address(opts), email_address(opts)].compact.join(', ')
+  end
+
+  def email_address(opts)
+    return unless opts[:email]
+    "Email: %s" % opts[:email]
   end
 
   def ip_address(opts)
