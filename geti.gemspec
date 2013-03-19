@@ -30,6 +30,7 @@ Gem::Specification.new do |s|
     "doc/.DS_Store",
     "doc/implementation_notes.md",
     "doc/readme.txt",
+    "geti.gemspec",
     "lib/geti.rb",
     "lib/geti/app_client.rb",
     "lib/geti/auth_client.rb",
