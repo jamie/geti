@@ -6,21 +6,42 @@
 
 A middleware gem for interfacing with Global eTelecom's ACH processing service.
 
-== FEATURES/PROBLEMS:
+== FEATURES:
 
-* FIX (list of features or problems)
+* Merchant Applications
+* Transaction Processing
+
+TODO:
+
+Realtime transaction processing is currently limited to authorization. Merchant applications are more fully-featured.
 
 == SYNOPSIS:
 
-  FIX (code sample of usage)
+Merchant Application:
+
+  client = Geti::AppClient.new(credentials)
+  response = client.board_merchant_ach(merchant_params)
+
+Transaction Processing
+
+  client = Geti::AuthClient.new(credentials, {:sec_code => 'WEB', :verify => []})
+  response = client.process({
+    :type => :authorize,
+    :amount => 1000,
+    :first_name => 'Bob',
+    :last_name => 'Smith',
+    :account_type => 'Checking',
+    :routing_number => routing_number(:authorization),
+    :account_number => '1234567890'
+  })
 
 == REQUIREMENTS:
 
-* FIX (list of requirements)
+* API account from http://www.globaletelecom.com/
 
 == INSTALL:
 
-* FIX (sudo gem install, anything else)
+* bundle install
 
 == DEVELOPERS:
 
