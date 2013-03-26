@@ -18,5 +18,5 @@ Just run `rspec`. If you want to run the specs in the remote dir, you'll need to
 
 == Copyright
 
-Copyright (c) 2012 VersaPay Corp. See LICENSE.txt for further details.
+Copyright (c) 2013 VersaPay Corp. See LICENSE.txt for further details.
 
