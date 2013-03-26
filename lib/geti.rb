@@ -1,4 +1,6 @@
-module Geti; end
+module Geti
+  VERSION = "1.8.0"
+end
 
 require 'geti/client'
 require 'geti/auth_client'

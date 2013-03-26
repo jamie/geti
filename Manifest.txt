@@ -1,0 +1,16 @@
+History.txt
+Manifest.txt
+README.rdoc
+Rakefile
+lib/geti.rb
+lib/geti/app_client.rb
+lib/geti/auth_client.rb
+lib/geti/client.rb
+lib/geti/response.rb
+lib/geti/terminal_settings.rb
+spec/geti_app_client_spec.rb
+spec/geti_auth_client_spec.rb
+spec/helper.rb
+spec/remote/geti_app_client_spec.rb
+spec/remote/geti_auth_client_spec.rb
+spec/remote/sample.pdf

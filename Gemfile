@@ -7,7 +7,7 @@ gem 'httpclient'
 group :development do
   gem 'rake', "< 0.9"
   gem "bundler"
-  gem "jeweler", "~> 1.8.4"
+  gem "hoe"
   gem "rcov"
 end
 
