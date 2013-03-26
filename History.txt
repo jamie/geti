@@ -1,6 +1,12 @@
-=== 1.8.0 / 2013-03-26
+=== 1.8.1 / 2013-03-26
+
+* 1 minor enhancement
+
+  * Built gem with Hoe
+
+=== 1.8.0 / 2013-03-19
 
 * 1 major enhancement
 
-  * Birthday!
+  * Previous Release via Jeweler
 
