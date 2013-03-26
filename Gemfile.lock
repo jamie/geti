@@ -20,9 +20,14 @@ GEM
       builder (>= 2.1.2)
     hoe (3.5.2)
       rake (>= 0.8, < 11.0)
+    hoe-bundler (1.2.0)
+      hoe (>= 2.2.0)
+    hoe-git (1.5.0)
+      hoe (>= 2.2.0)
     httpclient (2.3.2)
     httpi (1.1.1)
       rack
+    json (1.7.6)
     listen (0.7.2)
     lumberjack (1.0.2)
     method_source (0.8.1)
@@ -36,6 +41,8 @@ GEM
     rake (0.8.7)
     rb-fsevent (0.9.3)
     rcov (1.0.0)
+    rdoc (3.12.1)
+      json (~> 1.4)
     rspec (2.12.0)
       rspec-core (~> 2.12.0)
       rspec-expectations (~> 2.12.0)
@@ -63,14 +70,17 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bundler
-  guard
-  guard-rspec
-  hoe
-  httpclient
-  httpi
+  bundler (> 0)
+  guard (> 0)
+  guard-rspec (> 0)
+  hoe (> 0)
+  hoe-bundler (> 0)
+  hoe-git (> 0)
+  httpclient (> 0)
+  httpi (> 0)
   rake (< 0.9)
   rb-fsevent (~> 0.9.1)
-  rcov
-  rspec
+  rcov (> 0)
+  rdoc (~> 3.10)
+  rspec (> 0)
   savon (~> 1.0)
