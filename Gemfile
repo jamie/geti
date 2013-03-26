@@ -13,7 +13,6 @@ end
 
 group :test do
   gem 'rspec'
-  gem 'fuubar'
   gem 'guard'
   gem 'guard-rspec'
   gem 'rb-fsevent', '~> 0.9.1'
