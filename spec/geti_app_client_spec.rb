@@ -278,4 +278,27 @@ describe Geti::AppClient do
       end
     end
   end
+
+  describe '#taxpayer_info' do
+    let(:client) { Geti::AppClient.new(test_credentials, {}) }
+
+    it 'includes taxpayer_name' do
+      expect(client.taxpayer_info(request_payload)).to include("Tax Info: Carl Cogsley")
+    end
+
+    it 'includes taxpayer_id' do
+      expect(client.taxpayer_info(request_payload)).to include("123456789")
+    end
+
+    it 'does not usually include SSN' do
+      expect(client.taxpayer_info(request_payload)).not_to include("111222123")
+    end
+
+    it 'includes SSN for sole proprietorships' do
+      payload = request_payload
+      payload[:business_type] = "Sole Proprietorship"
+      expect(client.taxpayer_info(payload)).to include("111222123")
+    end
+
+  end
 end

@@ -200,7 +200,7 @@ class Geti::AppClient < Geti::Client
           # TODO: Email address
         }) do
           xml.BusinessInfo({
-            :merchOwnership => MERCHANT_OWNERSHIP.index((opts[:business_type]||'').gsub('_', ' ')),
+            :merchOwnership => merchant_ownership(opts),
             :merchAvgCheckAmount => opts[:average_amount],
             :merchMaxCheckAmount => opts[:max_amount],
             :merchTotalTimeInBusiness => opts[:days_in_business],
@@ -297,8 +297,16 @@ class Geti::AppClient < Geti::Client
     "Signup IP: %s" % opts[:ip]
   end
 
+  def merchant_ownership(opts)
+    MERCHANT_OWNERSHIP.index((opts[:business_type]||'').gsub('_', ' '))
+  end
+
   def taxpayer_info(opts)
-    "Tax Info: %s - %s" % [opts[:taxpayer_name], opts[:taxpayer_id]]
+    if merchant_ownership(opts) == '3' # Sole Proprietorship
+      ["Tax Info: #{opts[:taxpayer_name]}", opts[:taxpayer_id], "SSN: #{opts[:principal_ssn]}"]
+    else
+      ["Tax Info: #{opts[:taxpayer_name]}", opts[:taxpayer_id]]
+    end.join(" - ")
   end
 
 private
