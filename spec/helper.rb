@@ -23,13 +23,12 @@ $LOAD_PATH.unshift(File.dirname(__FILE__))
 require 'pp'
 require 'geti'
 
-
-Savon.configure do |config|
-  config.log = HTTPI.log = false unless ENV['SOAP_DEBUG']
-end
-
 def test_credentials(env='app')
   YAML.load(File.read('config/test_credentials.yml'))[env]
+end
+
+def fixture(name)
+  File.read(File.expand_path("./spec/fixtures/#{name}.xml"))
 end
 
 def xit(*args, &block)

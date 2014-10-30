@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <soap:Body>
+    <ProcessSingleCertificationCheckResponse xmlns="http://tempuri.org/GETI.eMagnus.WebServices/AuthGateway">
+      <ProcessSingleCertificationCheckResult>
+        &lt;?xml version="1.0" encoding="utf-8"?&gt;
+        &lt;RESPONSE xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" REQUEST_ID=""&gt;
+          &lt;VALIDATION_MESSAGE&gt;
+            &lt;RESULT&gt;Passed&lt;/RESULT&gt;
+            &lt;SCHEMA_FILE_PATH&gt;http://demo.eftchecks.com/webservices/Schemas/WEB/Ng_CheckNoVerificationDLOptional.xsd&lt;/SCHEMA_FILE_PATH&gt;
+          &lt;/VALIDATION_MESSAGE&gt;
+          &lt;AUTHORIZATION_MESSAGE&gt;
+            &lt;TRANSACTION_ID /&gt;
+            &lt;RESPONSE_TYPE&gt;A&lt;/RESPONSE_TYPE&gt;
+            &lt;RESPONSE_TYPE_TEXT&gt;APPROVED&lt;/RESPONSE_TYPE_TEXT&gt;
+            &lt;RESULT_CODE&gt;0&lt;/RESULT_CODE&gt;
+            &lt;TYPE_CODE&gt;4096&lt;/TYPE_CODE&gt;
+            &lt;CODE&gt;AUTH NUM 272-172&lt;/CODE&gt;
+            &lt;MESSAGE&gt;APPROVAL&lt;/MESSAGE&gt;
+          &lt;/AUTHORIZATION_MESSAGE&gt;
+        &lt;/RESPONSE&gt;
+      </ProcessSingleCertificationCheckResult>
+    </ProcessSingleCertificationCheckResponse>
+  </soap:Body>
+</soap:Envelope>

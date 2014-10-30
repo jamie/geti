@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <soap:Body>
+    <GetTerminalSettingsResponse xmlns="http://tempuri.org/GETI.eMagnus.WebServices/AuthGateway">
+      <GetTerminalSettingsResult>
+        &lt;?xml version="1.0" encoding="utf-8"?&gt;
+        &lt;TERMINAL_SETTINGS xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+          &lt;TERMINAL_ID&gt;2310&lt;/TERMINAL_ID&gt;
+          &lt;SEC_CODE&gt;WEB&lt;/SEC_CODE&gt;
+          &lt;IS_GATEWAY_TERMINAL&gt;true&lt;/IS_GATEWAY_TERMINAL&gt;
+          &lt;ALLOW_CNSMR_CREDITS&gt;false&lt;/ALLOW_CNSMR_CREDITS&gt;
+          &lt;DL_REQUIRED&gt;false&lt;/DL_REQUIRED&gt;
+          &lt;RUN_CHECK_VERIFICATION&gt;false&lt;/RUN_CHECK_VERIFICATION&gt;
+          &lt;RUN_IDENTITY_VERIFICATION&gt;false&lt;/RUN_IDENTITY_VERIFICATION&gt;
+          &lt;SCHEMA_FILE_PATH&gt;http://demo.eftchecks.com/webservices/Schemas/WEB/Ng_CheckNoVerificationDLOptional.xsd&lt;/SCHEMA_FILE_PATH&gt;
+          &lt;XML_TEMPLATE_PATH&gt;http://demo.eftchecks.com/webservices/Schemas/WEB/Templates/CheckNoVerificationDLOptional.xml&lt;/XML_TEMPLATE_PATH&gt;
+        &lt;/TERMINAL_SETTINGS&gt;
+      </GetTerminalSettingsResult>
+    </GetTerminalSettingsResponse>
+  </soap:Body>
+</soap:Envelope>

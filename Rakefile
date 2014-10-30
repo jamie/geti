@@ -29,4 +29,3 @@ Hoe.spec "geti" do
   dependency 'guard-rspec', '>0', :dev
   dependency 'rb-fsevent', '~> 0.9.1', :dev
 end
-
