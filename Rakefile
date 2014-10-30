@@ -10,9 +10,10 @@ Hoe.spec "geti" do
   developer("Jamie Macey", "jamie@tracefunc.com")
   license "MIT"
 
-  dependency 'savon', "~> 1.0"
+  dependency 'savon', "~> 2.0"
   dependency 'httpi', ">0"
   dependency 'httpclient', ">0"
+  dependency 'nokogiri', "1.5.6" # <1.6 for Ruby 1.8 compat
 
   # Development
   dependency 'rake', "< 0.9", :dev

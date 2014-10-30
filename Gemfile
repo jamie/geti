@@ -4,20 +4,21 @@
 
 source "https://rubygems.org/"
 
-gem "httpclient", ">0"
+gem "nokogiri", "1.5.6"
+gem "savon", "~>2.0"
 gem "httpi", ">0"
-gem "savon", "~>1.0"
+gem "httpclient", ">0"
 
-gem "bundler", ">0", :group => [:development, :test]
-gem "guard", ">0", :group => [:development, :test]
-gem "guard-rspec", ">0", :group => [:development, :test]
-gem "hoe", ">0", :group => [:development, :test]
-gem "hoe-bundler", ">0", :group => [:development, :test]
+gem "rb-fsevent", "~>0.9.1", :group => [:development, :test]
 gem "hoe-git", ">0", :group => [:development, :test]
 gem "rake", "<0.9", :group => [:development, :test]
-gem "rb-fsevent", "~>0.9.1", :group => [:development, :test]
+gem "rspec", ">0", :group => [:development, :test]
+gem "bundler", ">0", :group => [:development, :test]
+gem "hoe", ">0", :group => [:development, :test]
+gem "guard", ">0", :group => [:development, :test]
 gem "rcov", ">0", :group => [:development, :test]
 gem "rdoc", "~>3.10", :group => [:development, :test]
-gem "rspec", ">0", :group => [:development, :test]
+gem "guard-rspec", ">0", :group => [:development, :test]
+gem "hoe-bundler", ">0", :group => [:development, :test]
 
 # vim: syntax=ruby
