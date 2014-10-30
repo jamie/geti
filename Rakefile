@@ -13,7 +13,7 @@ Hoe.spec "geti" do
   dependency 'savon', "~> 2.0"
   dependency 'httpi', ">0"
   dependency 'httpclient', ">0"
-  dependency 'nokogiri', "1.5.6" # <1.6 for Ruby 1.8 compat
+  dependency 'nokogiri', "<1.6" # Ruby 1.8 compatible
 
   # Development
   dependency 'rake', "< 0.9", :dev

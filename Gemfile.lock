@@ -84,7 +84,7 @@ DEPENDENCIES
   hoe-git (> 0)
   httpclient (> 0)
   httpi (> 0)
-  nokogiri (= 1.5.6)
+  nokogiri (< 1.6)
   rake (< 0.9)
   rb-fsevent (~> 0.9.1)
   rcov (> 0)
