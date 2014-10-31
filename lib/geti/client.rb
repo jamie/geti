@@ -9,7 +9,13 @@ class Geti::Client
   end
 
   def soap_client
-    @soap_client ||= Savon.client(service_address)
+    Savon.client do |savon|
+      savon.wsdl service_address
+      savon.soap_version 2
+
+      savon.convert_request_keys_to :camelcase
+      savon.pretty_print_xml true
+    end
   end
 
   def data_packet
@@ -22,16 +28,17 @@ class Geti::Client
 
   def soap_request(operation, op_key=nil)
     operation.sub!('Certification','') unless certification?
-    response = soap_client.request operation do
-      http.headers.delete('SOAPAction')
-      config.soap_header = soap_header
-      soap.body = (yield if block_given?)
-    end
 
     op_key ||= operation.gsub(/(.)([A-Z])/, '\1_\2').downcase
     op_key.sub!('_certification','') unless certification?
     response_key = (op_key+'_response').to_sym
     result_key = (op_key+'_result').to_sym
+
+    geti_soap_header = soap_header
+    response = soap_client.call(op_key.to_sym) do
+      soap_header geti_soap_header
+      message(yield) if block_given?
+    end
 
     xml_parser.parse(response.body[response_key][result_key])
   end
@@ -49,6 +56,6 @@ class Geti::Client
   end
 
   def xml_parser
-    @xml_parser or Nori
+    @xml_parser or Nori.new(:convert_tags_to => lambda { |tag| tag.snakecase.to_sym })
   end
 end

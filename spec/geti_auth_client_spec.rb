@@ -1,27 +1,21 @@
 require 'helper'
+require 'savon/mock/spec_helper'
 
 describe Geti::AuthClient do
-  def mock_soap!(client, parsed_response, operation, op_key=nil)
-    op_key ||= operation.gsub(/(.)([A-Z])/, '\1_\2').downcase
-    response_key = (op_key+'_response').to_sym
-    result_key = (op_key+'_result').to_sym
-
-    data = OpenStruct.new(:body => {response_key => {result_key => :encoded_xml}})
-
-    client.soap_client.should_receive(:request).with(operation).and_return(data)
-    client.xml_parser.should_receive(:parse).with(:encoded_xml).and_return(parsed_response)
-  end
+  include Savon::SpecHelper
+  before(:all) { savon.mock! }
+  after(:all)  { savon.unmock! }
 
   describe '#get_terminal_settings' do
     it 'calls GetCertificationTerminalSettings' do
       client = Geti::AuthClient.new(test_credentials, {:sec_code => 'WEB', :verify => []})
-      mock_soap!(client, {}, "GetCertificationTerminalSettings")
+      savon.expects(:get_certification_terminal_settings).returns(fixture(:get_certification_terminal_settings))
       client.get_terminal_settings
     end
 
     it 'calls GetTerminalSettings in production' do
       client = Geti::AuthClient.new(test_credentials, {:sec_code => 'WEB', :verify => []}, 'production')
-      mock_soap!(client, {}, "GetTerminalSettings")
+      savon.expects(:get_terminal_settings).returns(fixture(:get_terminal_settings))
       client.get_terminal_settings
     end
   end
