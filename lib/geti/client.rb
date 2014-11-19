@@ -11,7 +11,13 @@ class Geti::Client
   def soap_client
     Savon.client do |savon|
       savon.wsdl service_address
+      # not picking up https by default after change to TLSv1
+      savon.endpoint "https://#{domain}/webservices/AppGateway.asmx"
       savon.soap_version 2
+      savon.ssl_version :TLSv1
+
+      # savon.log_level :debug
+      # savon.log true
 
       savon.convert_request_keys_to :camelcase
       savon.pretty_print_xml true
