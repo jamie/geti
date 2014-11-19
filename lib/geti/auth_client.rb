@@ -87,7 +87,7 @@ class Geti::AuthClient < Geti::Client
   end
 
   def service_address
-    "https://#{domain}/webservices/AuthGateway.asmx?WSDL"
+    "https://#{domain}/webservices/AuthGateway.asmx"
   end
 
   def soap_header
