@@ -1,5 +1,5 @@
 module Geti
-  VERSION = "2.1"
+  VERSION = "3.0"
 end
 
 require 'geti/client'

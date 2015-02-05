@@ -182,7 +182,7 @@ class Geti::AppClient < Geti::Client
           :isoID              => opts[:iso_id] || "9999",
           :merchCrossRefID    => opts[:id],
           :merchName          => opts[:name], # Legal Name
-          :merchTypeID        => MERCHANT_TYPES.index(opts[:industry]), # "Type of goods sold"
+          :merchTypeID        => MERCHANT_TYPES.key(opts[:industry]), # "Type of goods sold"
           :merchServiceType   => opts[:service_type] || "GOLD",
           # TODO: Tax ID
           :merchAddress1      => opts[:address], # TODO: Is this mailing or DBA address?
@@ -298,7 +298,7 @@ class Geti::AppClient < Geti::Client
   end
 
   def merchant_ownership(opts)
-    MERCHANT_OWNERSHIP.index((opts[:business_type]||'').gsub('_', ' '))
+    MERCHANT_OWNERSHIP.key((opts[:business_type]||'').gsub('_', ' '))
   end
 
   def taxpayer_info(opts)
