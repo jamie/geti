@@ -13,19 +13,19 @@ Hoe.spec "geti" do
   dependency 'savon', "~> 2.0"
   dependency 'httpi', ">0"
   dependency 'httpclient', ">0"
-  dependency 'nokogiri', "<1.6" # Ruby 1.8 compatible
+  dependency 'nokogiri', ">0"
 
   # Development
-  dependency 'rake', "< 0.9", :dev
+  dependency 'rake', ">0", :dev
   dependency 'bundler', '>0', :dev
   dependency "hoe", '>0', :dev
   dependency "hoe-bundler", '>0', :dev
   dependency "hoe-git", '>0', :dev
 
   # Test
-  dependency "rcov", '>0', :dev
-  dependency 'rspec', '>0', :dev
+  dependency "simplecov", '>0', :dev
+  dependency 'rspec', '<2.99', :dev
   dependency 'guard', '>0', :dev
   dependency 'guard-rspec', '>0', :dev
-  dependency 'rb-fsevent', '~> 0.9.1', :dev
+  dependency 'rb-fsevent', '>0', :dev
 end
