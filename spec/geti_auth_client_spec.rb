@@ -1,4 +1,4 @@
-require 'helper'
+require 'spec_helper'
 require 'savon/mock/spec_helper'
 
 describe Geti::AuthClient do

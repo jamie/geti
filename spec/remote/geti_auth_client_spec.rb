@@ -1,4 +1,4 @@
-require 'helper'
+require 'spec_helper'
 
 def routing_number(type)
   { :authorization  => 490000018,
