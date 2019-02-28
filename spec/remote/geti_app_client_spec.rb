@@ -76,7 +76,7 @@ describe Geti::AppClient, :remote => true do
 
       response = client.upload_supporting_docs(response[:app_data][:merchant][:id], File.read('./spec/remote/sample.pdf'))
       expect(response[:status]).to eq("Approved")
-      expect(response[:message]).to match("Document uploaded successfuly")
+      expect(response[:message]).to match("Document uploaded successfully")
     end
   end
 end
