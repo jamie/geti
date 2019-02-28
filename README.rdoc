@@ -1,3 +1,5 @@
+= WARNING: This code is no longer fully up to date with upstream API, do not use.
+
 = geti
 
 * https://github.com/versapay/geti
