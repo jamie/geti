@@ -1,0 +1,492 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://demo.eftchecks.com/webservices/AuthGateway.asmx?WSDL
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - HTTPClient/1.0 (2.8.3, ruby 2.6.0 (2018-12-25))
+      Accept:
+      - "*/*"
+      Date:
+      - Thu, 28 Feb 2019 06:17:05 GMT
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 28 Feb 2019 06:17:05 GMT
+      Content-Type:
+      - text/xml; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - BIGipServerGETI_CERT_Check_Gateway_pool=577569290.20480.0000; path=/; Httponly;
+        Secure
+      - __cfduid=d2810c1d8c6745f26f3c1c180c343becd1551334625; expires=Fri, 28-Feb-20
+        06:17:05 GMT; path=/; domain=.eftchecks.com; HttpOnly
+      Cache-Control:
+      - private, max-age=0
+      X-Aspnet-Version:
+      - 2.0.50727
+      X-Powered-By:
+      - ASP.NET
+      Vary:
+      - Accept-Encoding
+      Expect-Ct:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 4b00c41f291c7991-SEA
+    body:
+      encoding: UTF-8
+      string: "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<wsdl:definitions xmlns:soap=\"http://schemas.xmlsoap.org/wsdl/soap/\"
+        xmlns:tm=\"http://microsoft.com/wsdl/mime/textMatching/\" xmlns:soapenc=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        xmlns:mime=\"http://schemas.xmlsoap.org/wsdl/mime/\" xmlns:tns=\"http://tempuri.org/GETI.eMagnus.WebServices/AuthGateway\"
+        xmlns:s=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap12=\"http://schemas.xmlsoap.org/wsdl/soap12/\"
+        xmlns:http=\"http://schemas.xmlsoap.org/wsdl/http/\" targetNamespace=\"http://tempuri.org/GETI.eMagnus.WebServices/AuthGateway\"
+        xmlns:wsdl=\"http://schemas.xmlsoap.org/wsdl/\">\r\n  <wsdl:types>\r\n    <s:schema
+        elementFormDefault=\"qualified\" targetNamespace=\"http://tempuri.org/GETI.eMagnus.WebServices/AuthGateway\">\r\n
+        \     <s:element name=\"AuthGatewayCertification\">\r\n        <s:complexType>\r\n
+        \         <s:sequence>\r\n            <s:element minOccurs=\"0\" maxOccurs=\"1\"
+        name=\"DataPacket\" type=\"s:string\" />\r\n          </s:sequence>\r\n        </s:complexType>\r\n
+        \     </s:element>\r\n      <s:element name=\"AuthGatewayCertificationResponse\">\r\n
+        \       <s:complexType>\r\n          <s:sequence>\r\n            <s:element
+        minOccurs=\"0\" maxOccurs=\"1\" name=\"AuthGatewayCertificationResult\" type=\"s:string\"
+        />\r\n          </s:sequence>\r\n        </s:complexType>\r\n      </s:element>\r\n
+        \     <s:element name=\"AuthGatewayHeader\" type=\"tns:AuthGatewayHeader\"
+        />\r\n      <s:complexType name=\"AuthGatewayHeader\">\r\n        <s:complexContent
+        mixed=\"false\">\r\n          <s:extension base=\"tns:RemoteAccessHeader\"
+        />\r\n        </s:complexContent>\r\n      </s:complexType>\r\n      <s:complexType
+        name=\"RemoteAccessHeader\">\r\n        <s:sequence>\r\n          <s:element
+        minOccurs=\"0\" maxOccurs=\"1\" name=\"UserName\" type=\"s:string\" />\r\n
+        \         <s:element minOccurs=\"0\" maxOccurs=\"1\" name=\"Password\" type=\"s:string\"
+        />\r\n          <s:element minOccurs=\"1\" maxOccurs=\"1\" name=\"TerminalID\"
+        type=\"s:int\" />\r\n        </s:sequence>\r\n        <s:anyAttribute />\r\n
+        \     </s:complexType>\r\n      <s:element name=\"GetCertificationTerminalSettings\">\r\n
+        \       <s:complexType />\r\n      </s:element>\r\n      <s:element name=\"GetCertificationTerminalSettingsResponse\">\r\n
+        \       <s:complexType>\r\n          <s:sequence>\r\n            <s:element
+        minOccurs=\"0\" maxOccurs=\"1\" name=\"GetCertificationTerminalSettingsResult\"
+        type=\"s:string\" />\r\n          </s:sequence>\r\n        </s:complexType>\r\n
+        \     </s:element>\r\n      <s:element name=\"ProcessSingleCertificationCheck\">\r\n
+        \       <s:complexType>\r\n          <s:sequence>\r\n            <s:element
+        minOccurs=\"0\" maxOccurs=\"1\" name=\"DataPacket\" type=\"s:string\" />\r\n
+        \         </s:sequence>\r\n        </s:complexType>\r\n      </s:element>\r\n
+        \     <s:element name=\"ProcessSingleCertificationCheckResponse\">\r\n        <s:complexType>\r\n
+        \         <s:sequence>\r\n            <s:element minOccurs=\"0\" maxOccurs=\"1\"
+        name=\"ProcessSingleCertificationCheckResult\" type=\"s:string\" />\r\n          </s:sequence>\r\n
+        \       </s:complexType>\r\n      </s:element>\r\n      <s:element name=\"ProcessSingleCertificationCheckWithToken\">\r\n
+        \       <s:complexType>\r\n          <s:sequence>\r\n            <s:element
+        minOccurs=\"0\" maxOccurs=\"1\" name=\"DataPacket\" type=\"s:string\" />\r\n
+        \         </s:sequence>\r\n        </s:complexType>\r\n      </s:element>\r\n
+        \     <s:element name=\"ProcessSingleCertificationCheckWithTokenResponse\">\r\n
+        \       <s:complexType>\r\n          <s:sequence>\r\n            <s:element
+        minOccurs=\"0\" maxOccurs=\"1\" name=\"ProcessSingleCertificationCheckWithTokenResult\"
+        type=\"s:string\" />\r\n          </s:sequence>\r\n        </s:complexType>\r\n
+        \     </s:element>\r\n      <s:element name=\"GetCertificationToken\">\r\n
+        \       <s:complexType>\r\n          <s:sequence>\r\n            <s:element
+        minOccurs=\"0\" maxOccurs=\"1\" name=\"DataPacket\" type=\"s:string\" />\r\n
+        \         </s:sequence>\r\n        </s:complexType>\r\n      </s:element>\r\n
+        \     <s:element name=\"GetCertificationTokenResponse\">\r\n        <s:complexType>\r\n
+        \         <s:sequence>\r\n            <s:element minOccurs=\"0\" maxOccurs=\"1\"
+        name=\"GetCertificationTokenResult\" type=\"s:string\" />\r\n          </s:sequence>\r\n
+        \       </s:complexType>\r\n      </s:element>\r\n      <s:element name=\"ParseCertificationMICR\">\r\n
+        \       <s:complexType>\r\n          <s:sequence>\r\n            <s:element
+        minOccurs=\"0\" maxOccurs=\"1\" name=\"DataPacket\" type=\"s:string\" />\r\n
+        \         </s:sequence>\r\n        </s:complexType>\r\n      </s:element>\r\n
+        \     <s:element name=\"ParseCertificationMICRResponse\">\r\n        <s:complexType>\r\n
+        \         <s:sequence>\r\n            <s:element minOccurs=\"0\" maxOccurs=\"1\"
+        name=\"ParseCertificationMICRResult\" type=\"s:string\" />\r\n          </s:sequence>\r\n
+        \       </s:complexType>\r\n      </s:element>\r\n      <s:element name=\"GetTerminalSettings\">\r\n
+        \       <s:complexType />\r\n      </s:element>\r\n      <s:element name=\"GetTerminalSettingsResponse\">\r\n
+        \       <s:complexType>\r\n          <s:sequence>\r\n            <s:element
+        minOccurs=\"0\" maxOccurs=\"1\" name=\"GetTerminalSettingsResult\" type=\"s:string\"
+        />\r\n          </s:sequence>\r\n        </s:complexType>\r\n      </s:element>\r\n
+        \     <s:element name=\"ProcessSingleCheck\">\r\n        <s:complexType>\r\n
+        \         <s:sequence>\r\n            <s:element minOccurs=\"0\" maxOccurs=\"1\"
+        name=\"DataPacket\" type=\"s:string\" />\r\n          </s:sequence>\r\n        </s:complexType>\r\n
+        \     </s:element>\r\n      <s:element name=\"ProcessSingleCheckResponse\">\r\n
+        \       <s:complexType>\r\n          <s:sequence>\r\n            <s:element
+        minOccurs=\"0\" maxOccurs=\"1\" name=\"ProcessSingleCheckResult\" type=\"s:string\"
+        />\r\n          </s:sequence>\r\n        </s:complexType>\r\n      </s:element>\r\n
+        \     <s:element name=\"ProcessSingleCheckWithToken\">\r\n        <s:complexType>\r\n
+        \         <s:sequence>\r\n            <s:element minOccurs=\"0\" maxOccurs=\"1\"
+        name=\"DataPacket\" type=\"s:string\" />\r\n          </s:sequence>\r\n        </s:complexType>\r\n
+        \     </s:element>\r\n      <s:element name=\"ProcessSingleCheckWithTokenResponse\">\r\n
+        \       <s:complexType>\r\n          <s:sequence>\r\n            <s:element
+        minOccurs=\"0\" maxOccurs=\"1\" name=\"ProcessSingleCheckWithTokenResult\"
+        type=\"s:string\" />\r\n          </s:sequence>\r\n        </s:complexType>\r\n
+        \     </s:element>\r\n      <s:element name=\"GetToken\">\r\n        <s:complexType>\r\n
+        \         <s:sequence>\r\n            <s:element minOccurs=\"0\" maxOccurs=\"1\"
+        name=\"DataPacket\" type=\"s:string\" />\r\n          </s:sequence>\r\n        </s:complexType>\r\n
+        \     </s:element>\r\n      <s:element name=\"GetTokenResponse\">\r\n        <s:complexType>\r\n
+        \         <s:sequence>\r\n            <s:element minOccurs=\"0\" maxOccurs=\"1\"
+        name=\"GetTokenResult\" type=\"s:string\" />\r\n          </s:sequence>\r\n
+        \       </s:complexType>\r\n      </s:element>\r\n      <s:element name=\"ParseMICR\">\r\n
+        \       <s:complexType>\r\n          <s:sequence>\r\n            <s:element
+        minOccurs=\"0\" maxOccurs=\"1\" name=\"DataPacket\" type=\"s:string\" />\r\n
+        \         </s:sequence>\r\n        </s:complexType>\r\n      </s:element>\r\n
+        \     <s:element name=\"ParseMICRResponse\">\r\n        <s:complexType>\r\n
+        \         <s:sequence>\r\n            <s:element minOccurs=\"0\" maxOccurs=\"1\"
+        name=\"ParseMICRResult\" type=\"s:string\" />\r\n          </s:sequence>\r\n
+        \       </s:complexType>\r\n      </s:element>\r\n      <s:element name=\"GetArchivedResponse\">\r\n
+        \       <s:complexType>\r\n          <s:sequence>\r\n            <s:element
+        minOccurs=\"0\" maxOccurs=\"1\" name=\"RequestID\" type=\"s:string\" />\r\n
+        \         </s:sequence>\r\n        </s:complexType>\r\n      </s:element>\r\n
+        \     <s:element name=\"GetArchivedResponseResponse\">\r\n        <s:complexType>\r\n
+        \         <s:sequence>\r\n            <s:element minOccurs=\"0\" maxOccurs=\"1\"
+        name=\"GetArchivedResponseResult\" type=\"s:string\" />\r\n          </s:sequence>\r\n
+        \       </s:complexType>\r\n      </s:element>\r\n    </s:schema>\r\n  </wsdl:types>\r\n
+        \ <wsdl:message name=\"AuthGatewayCertificationSoapIn\">\r\n    <wsdl:part
+        name=\"parameters\" element=\"tns:AuthGatewayCertification\" />\r\n  </wsdl:message>\r\n
+        \ <wsdl:message name=\"AuthGatewayCertificationSoapOut\">\r\n    <wsdl:part
+        name=\"parameters\" element=\"tns:AuthGatewayCertificationResponse\" />\r\n
+        \ </wsdl:message>\r\n  <wsdl:message name=\"AuthGatewayCertificationAuthGatewayHeader\">\r\n
+        \   <wsdl:part name=\"AuthGatewayHeader\" element=\"tns:AuthGatewayHeader\"
+        />\r\n  </wsdl:message>\r\n  <wsdl:message name=\"GetCertificationTerminalSettingsSoapIn\">\r\n
+        \   <wsdl:part name=\"parameters\" element=\"tns:GetCertificationTerminalSettings\"
+        />\r\n  </wsdl:message>\r\n  <wsdl:message name=\"GetCertificationTerminalSettingsSoapOut\">\r\n
+        \   <wsdl:part name=\"parameters\" element=\"tns:GetCertificationTerminalSettingsResponse\"
+        />\r\n  </wsdl:message>\r\n  <wsdl:message name=\"GetCertificationTerminalSettingsAuthGatewayHeader\">\r\n
+        \   <wsdl:part name=\"AuthGatewayHeader\" element=\"tns:AuthGatewayHeader\"
+        />\r\n  </wsdl:message>\r\n  <wsdl:message name=\"ProcessSingleCertificationCheckSoapIn\">\r\n
+        \   <wsdl:part name=\"parameters\" element=\"tns:ProcessSingleCertificationCheck\"
+        />\r\n  </wsdl:message>\r\n  <wsdl:message name=\"ProcessSingleCertificationCheckSoapOut\">\r\n
+        \   <wsdl:part name=\"parameters\" element=\"tns:ProcessSingleCertificationCheckResponse\"
+        />\r\n  </wsdl:message>\r\n  <wsdl:message name=\"ProcessSingleCertificationCheckAuthGatewayHeader\">\r\n
+        \   <wsdl:part name=\"AuthGatewayHeader\" element=\"tns:AuthGatewayHeader\"
+        />\r\n  </wsdl:message>\r\n  <wsdl:message name=\"ProcessSingleCertificationCheckWithTokenSoapIn\">\r\n
+        \   <wsdl:part name=\"parameters\" element=\"tns:ProcessSingleCertificationCheckWithToken\"
+        />\r\n  </wsdl:message>\r\n  <wsdl:message name=\"ProcessSingleCertificationCheckWithTokenSoapOut\">\r\n
+        \   <wsdl:part name=\"parameters\" element=\"tns:ProcessSingleCertificationCheckWithTokenResponse\"
+        />\r\n  </wsdl:message>\r\n  <wsdl:message name=\"ProcessSingleCertificationCheckWithTokenAuthGatewayHeader\">\r\n
+        \   <wsdl:part name=\"AuthGatewayHeader\" element=\"tns:AuthGatewayHeader\"
+        />\r\n  </wsdl:message>\r\n  <wsdl:message name=\"GetCertificationTokenSoapIn\">\r\n
+        \   <wsdl:part name=\"parameters\" element=\"tns:GetCertificationToken\" />\r\n
+        \ </wsdl:message>\r\n  <wsdl:message name=\"GetCertificationTokenSoapOut\">\r\n
+        \   <wsdl:part name=\"parameters\" element=\"tns:GetCertificationTokenResponse\"
+        />\r\n  </wsdl:message>\r\n  <wsdl:message name=\"GetCertificationTokenAuthGatewayHeader\">\r\n
+        \   <wsdl:part name=\"AuthGatewayHeader\" element=\"tns:AuthGatewayHeader\"
+        />\r\n  </wsdl:message>\r\n  <wsdl:message name=\"ParseCertificationMICRSoapIn\">\r\n
+        \   <wsdl:part name=\"parameters\" element=\"tns:ParseCertificationMICR\"
+        />\r\n  </wsdl:message>\r\n  <wsdl:message name=\"ParseCertificationMICRSoapOut\">\r\n
+        \   <wsdl:part name=\"parameters\" element=\"tns:ParseCertificationMICRResponse\"
+        />\r\n  </wsdl:message>\r\n  <wsdl:message name=\"ParseCertificationMICRAuthGatewayHeader\">\r\n
+        \   <wsdl:part name=\"AuthGatewayHeader\" element=\"tns:AuthGatewayHeader\"
+        />\r\n  </wsdl:message>\r\n  <wsdl:message name=\"GetTerminalSettingsSoapIn\">\r\n
+        \   <wsdl:part name=\"parameters\" element=\"tns:GetTerminalSettings\" />\r\n
+        \ </wsdl:message>\r\n  <wsdl:message name=\"GetTerminalSettingsSoapOut\">\r\n
+        \   <wsdl:part name=\"parameters\" element=\"tns:GetTerminalSettingsResponse\"
+        />\r\n  </wsdl:message>\r\n  <wsdl:message name=\"GetTerminalSettingsAuthGatewayHeader\">\r\n
+        \   <wsdl:part name=\"AuthGatewayHeader\" element=\"tns:AuthGatewayHeader\"
+        />\r\n  </wsdl:message>\r\n  <wsdl:message name=\"ProcessSingleCheckSoapIn\">\r\n
+        \   <wsdl:part name=\"parameters\" element=\"tns:ProcessSingleCheck\" />\r\n
+        \ </wsdl:message>\r\n  <wsdl:message name=\"ProcessSingleCheckSoapOut\">\r\n
+        \   <wsdl:part name=\"parameters\" element=\"tns:ProcessSingleCheckResponse\"
+        />\r\n  </wsdl:message>\r\n  <wsdl:message name=\"ProcessSingleCheckAuthGatewayHeader\">\r\n
+        \   <wsdl:part name=\"AuthGatewayHeader\" element=\"tns:AuthGatewayHeader\"
+        />\r\n  </wsdl:message>\r\n  <wsdl:message name=\"ProcessSingleCheckWithTokenSoapIn\">\r\n
+        \   <wsdl:part name=\"parameters\" element=\"tns:ProcessSingleCheckWithToken\"
+        />\r\n  </wsdl:message>\r\n  <wsdl:message name=\"ProcessSingleCheckWithTokenSoapOut\">\r\n
+        \   <wsdl:part name=\"parameters\" element=\"tns:ProcessSingleCheckWithTokenResponse\"
+        />\r\n  </wsdl:message>\r\n  <wsdl:message name=\"ProcessSingleCheckWithTokenAuthGatewayHeader\">\r\n
+        \   <wsdl:part name=\"AuthGatewayHeader\" element=\"tns:AuthGatewayHeader\"
+        />\r\n  </wsdl:message>\r\n  <wsdl:message name=\"GetTokenSoapIn\">\r\n    <wsdl:part
+        name=\"parameters\" element=\"tns:GetToken\" />\r\n  </wsdl:message>\r\n  <wsdl:message
+        name=\"GetTokenSoapOut\">\r\n    <wsdl:part name=\"parameters\" element=\"tns:GetTokenResponse\"
+        />\r\n  </wsdl:message>\r\n  <wsdl:message name=\"GetTokenAuthGatewayHeader\">\r\n
+        \   <wsdl:part name=\"AuthGatewayHeader\" element=\"tns:AuthGatewayHeader\"
+        />\r\n  </wsdl:message>\r\n  <wsdl:message name=\"ParseMICRSoapIn\">\r\n    <wsdl:part
+        name=\"parameters\" element=\"tns:ParseMICR\" />\r\n  </wsdl:message>\r\n
+        \ <wsdl:message name=\"ParseMICRSoapOut\">\r\n    <wsdl:part name=\"parameters\"
+        element=\"tns:ParseMICRResponse\" />\r\n  </wsdl:message>\r\n  <wsdl:message
+        name=\"ParseMICRAuthGatewayHeader\">\r\n    <wsdl:part name=\"AuthGatewayHeader\"
+        element=\"tns:AuthGatewayHeader\" />\r\n  </wsdl:message>\r\n  <wsdl:message
+        name=\"GetArchivedResponseSoapIn\">\r\n    <wsdl:part name=\"parameters\"
+        element=\"tns:GetArchivedResponse\" />\r\n  </wsdl:message>\r\n  <wsdl:message
+        name=\"GetArchivedResponseSoapOut\">\r\n    <wsdl:part name=\"parameters\"
+        element=\"tns:GetArchivedResponseResponse\" />\r\n  </wsdl:message>\r\n  <wsdl:message
+        name=\"GetArchivedResponseAuthGatewayHeader\">\r\n    <wsdl:part name=\"AuthGatewayHeader\"
+        element=\"tns:AuthGatewayHeader\" />\r\n  </wsdl:message>\r\n  <wsdl:portType
+        name=\"AuthGatewaySoap\">\r\n    <wsdl:operation name=\"AuthGatewayCertification\">\r\n
+        \     <wsdl:documentation xmlns:wsdl=\"http://schemas.xmlsoap.org/wsdl/\">This
+        method will validate that the interface is sending a datapacket that conforms
+        to its schema. All interfaces with the Authorization Gateway must be certified
+        for each datapacket specification that will be sent.</wsdl:documentation>\r\n
+        \     <wsdl:input message=\"tns:AuthGatewayCertificationSoapIn\" />\r\n      <wsdl:output
+        message=\"tns:AuthGatewayCertificationSoapOut\" />\r\n    </wsdl:operation>\r\n
+        \   <wsdl:operation name=\"GetCertificationTerminalSettings\">\r\n      <wsdl:documentation
+        xmlns:wsdl=\"http://schemas.xmlsoap.org/wsdl/\">This method will return the
+        Terminal Settings for a certification terminal.</wsdl:documentation>\r\n      <wsdl:input
+        message=\"tns:GetCertificationTerminalSettingsSoapIn\" />\r\n      <wsdl:output
+        message=\"tns:GetCertificationTerminalSettingsSoapOut\" />\r\n    </wsdl:operation>\r\n
+        \   <wsdl:operation name=\"ProcessSingleCertificationCheck\">\r\n      <wsdl:documentation
+        xmlns:wsdl=\"http://schemas.xmlsoap.org/wsdl/\">This method will run the authorization
+        for a single certification check based on the settings for the terminal.</wsdl:documentation>\r\n
+        \     <wsdl:input message=\"tns:ProcessSingleCertificationCheckSoapIn\" />\r\n
+        \     <wsdl:output message=\"tns:ProcessSingleCertificationCheckSoapOut\"
+        />\r\n    </wsdl:operation>\r\n    <wsdl:operation name=\"ProcessSingleCertificationCheckWithToken\">\r\n
+        \     <wsdl:documentation xmlns:wsdl=\"http://schemas.xmlsoap.org/wsdl/\">This
+        method will run the authorization for a single certification check based on
+        the settings for the terminal and retrieve a token.</wsdl:documentation>\r\n
+        \     <wsdl:input message=\"tns:ProcessSingleCertificationCheckWithTokenSoapIn\"
+        />\r\n      <wsdl:output message=\"tns:ProcessSingleCertificationCheckWithTokenSoapOut\"
+        />\r\n    </wsdl:operation>\r\n    <wsdl:operation name=\"GetCertificationToken\">\r\n
+        \     <wsdl:documentation xmlns:wsdl=\"http://schemas.xmlsoap.org/wsdl/\">This
+        method will return a Token given (RoutingNum, AccountNum, and AccountTypeID)</wsdl:documentation>\r\n
+        \     <wsdl:input message=\"tns:GetCertificationTokenSoapIn\" />\r\n      <wsdl:output
+        message=\"tns:GetCertificationTokenSoapOut\" />\r\n    </wsdl:operation>\r\n
+        \   <wsdl:operation name=\"ParseCertificationMICR\">\r\n      <wsdl:documentation
+        xmlns:wsdl=\"http://schemas.xmlsoap.org/wsdl/\">This method will check the
+        packet and parse the MICR</wsdl:documentation>\r\n      <wsdl:input message=\"tns:ParseCertificationMICRSoapIn\"
+        />\r\n      <wsdl:output message=\"tns:ParseCertificationMICRSoapOut\" />\r\n
+        \   </wsdl:operation>\r\n    <wsdl:operation name=\"GetTerminalSettings\">\r\n
+        \     <wsdl:documentation xmlns:wsdl=\"http://schemas.xmlsoap.org/wsdl/\">This
+        method will return the Terminal Settings for a terminal.</wsdl:documentation>\r\n
+        \     <wsdl:input message=\"tns:GetTerminalSettingsSoapIn\" />\r\n      <wsdl:output
+        message=\"tns:GetTerminalSettingsSoapOut\" />\r\n    </wsdl:operation>\r\n
+        \   <wsdl:operation name=\"ProcessSingleCheck\">\r\n      <wsdl:documentation
+        xmlns:wsdl=\"http://schemas.xmlsoap.org/wsdl/\">This method will run the authorization
+        for a single check based on the settings for the terminal.</wsdl:documentation>\r\n
+        \     <wsdl:input message=\"tns:ProcessSingleCheckSoapIn\" />\r\n      <wsdl:output
+        message=\"tns:ProcessSingleCheckSoapOut\" />\r\n    </wsdl:operation>\r\n
+        \   <wsdl:operation name=\"ProcessSingleCheckWithToken\">\r\n      <wsdl:documentation
+        xmlns:wsdl=\"http://schemas.xmlsoap.org/wsdl/\">This method will run the authorization
+        for a single check based on the settings for the terminal and retrieve a token.</wsdl:documentation>\r\n
+        \     <wsdl:input message=\"tns:ProcessSingleCheckWithTokenSoapIn\" />\r\n
+        \     <wsdl:output message=\"tns:ProcessSingleCheckWithTokenSoapOut\" />\r\n
+        \   </wsdl:operation>\r\n    <wsdl:operation name=\"GetToken\">\r\n      <wsdl:documentation
+        xmlns:wsdl=\"http://schemas.xmlsoap.org/wsdl/\">This method will return a
+        Token given (RoutingNum, AccountNum, and AccountTypeID)</wsdl:documentation>\r\n
+        \     <wsdl:input message=\"tns:GetTokenSoapIn\" />\r\n      <wsdl:output
+        message=\"tns:GetTokenSoapOut\" />\r\n    </wsdl:operation>\r\n    <wsdl:operation
+        name=\"ParseMICR\">\r\n      <wsdl:documentation xmlns:wsdl=\"http://schemas.xmlsoap.org/wsdl/\">This
+        method will check the packet and parse the MICR</wsdl:documentation>\r\n      <wsdl:input
+        message=\"tns:ParseMICRSoapIn\" />\r\n      <wsdl:output message=\"tns:ParseMICRSoapOut\"
+        />\r\n    </wsdl:operation>\r\n    <wsdl:operation name=\"GetArchivedResponse\">\r\n
+        \     <wsdl:documentation xmlns:wsdl=\"http://schemas.xmlsoap.org/wsdl/\">This
+        method will retrieve a previously requested response for a given Transaction
+        ID and Terminal ID.</wsdl:documentation>\r\n      <wsdl:input message=\"tns:GetArchivedResponseSoapIn\"
+        />\r\n      <wsdl:output message=\"tns:GetArchivedResponseSoapOut\" />\r\n
+        \   </wsdl:operation>\r\n  </wsdl:portType>\r\n  <wsdl:binding name=\"AuthGatewaySoap\"
+        type=\"tns:AuthGatewaySoap\">\r\n    <soap:binding transport=\"http://schemas.xmlsoap.org/soap/http\"
+        />\r\n    <wsdl:operation name=\"AuthGatewayCertification\">\r\n      <soap:operation
+        soapAction=\"http://tempuri.org/GETI.eMagnus.WebServices/AuthGateway/AuthGatewayCertification\"
+        style=\"document\" />\r\n      <wsdl:input>\r\n        <soap:body use=\"literal\"
+        />\r\n        <soap:header message=\"tns:AuthGatewayCertificationAuthGatewayHeader\"
+        part=\"AuthGatewayHeader\" use=\"literal\" />\r\n      </wsdl:input>\r\n      <wsdl:output>\r\n
+        \       <soap:body use=\"literal\" />\r\n      </wsdl:output>\r\n    </wsdl:operation>\r\n
+        \   <wsdl:operation name=\"GetCertificationTerminalSettings\">\r\n      <soap:operation
+        soapAction=\"http://tempuri.org/GETI.eMagnus.WebServices/AuthGateway/GetCertificationTerminalSettings\"
+        style=\"document\" />\r\n      <wsdl:input>\r\n        <soap:body use=\"literal\"
+        />\r\n        <soap:header message=\"tns:GetCertificationTerminalSettingsAuthGatewayHeader\"
+        part=\"AuthGatewayHeader\" use=\"literal\" />\r\n      </wsdl:input>\r\n      <wsdl:output>\r\n
+        \       <soap:body use=\"literal\" />\r\n      </wsdl:output>\r\n    </wsdl:operation>\r\n
+        \   <wsdl:operation name=\"ProcessSingleCertificationCheck\">\r\n      <soap:operation
+        soapAction=\"http://tempuri.org/GETI.eMagnus.WebServices/AuthGateway/ProcessSingleCertificationCheck\"
+        style=\"document\" />\r\n      <wsdl:input>\r\n        <soap:body use=\"literal\"
+        />\r\n        <soap:header message=\"tns:ProcessSingleCertificationCheckAuthGatewayHeader\"
+        part=\"AuthGatewayHeader\" use=\"literal\" />\r\n      </wsdl:input>\r\n      <wsdl:output>\r\n
+        \       <soap:body use=\"literal\" />\r\n      </wsdl:output>\r\n    </wsdl:operation>\r\n
+        \   <wsdl:operation name=\"ProcessSingleCertificationCheckWithToken\">\r\n
+        \     <soap:operation soapAction=\"http://tempuri.org/GETI.eMagnus.WebServices/AuthGateway/ProcessSingleCertificationCheckWithToken\"
+        style=\"document\" />\r\n      <wsdl:input>\r\n        <soap:body use=\"literal\"
+        />\r\n        <soap:header message=\"tns:ProcessSingleCertificationCheckWithTokenAuthGatewayHeader\"
+        part=\"AuthGatewayHeader\" use=\"literal\" />\r\n      </wsdl:input>\r\n      <wsdl:output>\r\n
+        \       <soap:body use=\"literal\" />\r\n      </wsdl:output>\r\n    </wsdl:operation>\r\n
+        \   <wsdl:operation name=\"GetCertificationToken\">\r\n      <soap:operation
+        soapAction=\"http://tempuri.org/GETI.eMagnus.WebServices/AuthGateway/GetCertificationToken\"
+        style=\"document\" />\r\n      <wsdl:input>\r\n        <soap:body use=\"literal\"
+        />\r\n        <soap:header message=\"tns:GetCertificationTokenAuthGatewayHeader\"
+        part=\"AuthGatewayHeader\" use=\"literal\" />\r\n      </wsdl:input>\r\n      <wsdl:output>\r\n
+        \       <soap:body use=\"literal\" />\r\n      </wsdl:output>\r\n    </wsdl:operation>\r\n
+        \   <wsdl:operation name=\"ParseCertificationMICR\">\r\n      <soap:operation
+        soapAction=\"http://tempuri.org/GETI.eMagnus.WebServices/AuthGateway/ParseCertificationMICR\"
+        style=\"document\" />\r\n      <wsdl:input>\r\n        <soap:body use=\"literal\"
+        />\r\n        <soap:header message=\"tns:ParseCertificationMICRAuthGatewayHeader\"
+        part=\"AuthGatewayHeader\" use=\"literal\" />\r\n      </wsdl:input>\r\n      <wsdl:output>\r\n
+        \       <soap:body use=\"literal\" />\r\n      </wsdl:output>\r\n    </wsdl:operation>\r\n
+        \   <wsdl:operation name=\"GetTerminalSettings\">\r\n      <soap:operation
+        soapAction=\"http://tempuri.org/GETI.eMagnus.WebServices/AuthGateway/GetTerminalSettings\"
+        style=\"document\" />\r\n      <wsdl:input>\r\n        <soap:body use=\"literal\"
+        />\r\n        <soap:header message=\"tns:GetTerminalSettingsAuthGatewayHeader\"
+        part=\"AuthGatewayHeader\" use=\"literal\" />\r\n      </wsdl:input>\r\n      <wsdl:output>\r\n
+        \       <soap:body use=\"literal\" />\r\n      </wsdl:output>\r\n    </wsdl:operation>\r\n
+        \   <wsdl:operation name=\"ProcessSingleCheck\">\r\n      <soap:operation
+        soapAction=\"http://tempuri.org/GETI.eMagnus.WebServices/AuthGateway/ProcessSingleCheck\"
+        style=\"document\" />\r\n      <wsdl:input>\r\n        <soap:body use=\"literal\"
+        />\r\n        <soap:header message=\"tns:ProcessSingleCheckAuthGatewayHeader\"
+        part=\"AuthGatewayHeader\" use=\"literal\" />\r\n      </wsdl:input>\r\n      <wsdl:output>\r\n
+        \       <soap:body use=\"literal\" />\r\n      </wsdl:output>\r\n    </wsdl:operation>\r\n
+        \   <wsdl:operation name=\"ProcessSingleCheckWithToken\">\r\n      <soap:operation
+        soapAction=\"http://tempuri.org/GETI.eMagnus.WebServices/AuthGateway/ProcessSingleCheckWithToken\"
+        style=\"document\" />\r\n      <wsdl:input>\r\n        <soap:body use=\"literal\"
+        />\r\n        <soap:header message=\"tns:ProcessSingleCheckWithTokenAuthGatewayHeader\"
+        part=\"AuthGatewayHeader\" use=\"literal\" />\r\n      </wsdl:input>\r\n      <wsdl:output>\r\n
+        \       <soap:body use=\"literal\" />\r\n      </wsdl:output>\r\n    </wsdl:operation>\r\n
+        \   <wsdl:operation name=\"GetToken\">\r\n      <soap:operation soapAction=\"http://tempuri.org/GETI.eMagnus.WebServices/AuthGateway/GetToken\"
+        style=\"document\" />\r\n      <wsdl:input>\r\n        <soap:body use=\"literal\"
+        />\r\n        <soap:header message=\"tns:GetTokenAuthGatewayHeader\" part=\"AuthGatewayHeader\"
+        use=\"literal\" />\r\n      </wsdl:input>\r\n      <wsdl:output>\r\n        <soap:body
+        use=\"literal\" />\r\n      </wsdl:output>\r\n    </wsdl:operation>\r\n    <wsdl:operation
+        name=\"ParseMICR\">\r\n      <soap:operation soapAction=\"http://tempuri.org/GETI.eMagnus.WebServices/AuthGateway/ParseMICR\"
+        style=\"document\" />\r\n      <wsdl:input>\r\n        <soap:body use=\"literal\"
+        />\r\n        <soap:header message=\"tns:ParseMICRAuthGatewayHeader\" part=\"AuthGatewayHeader\"
+        use=\"literal\" />\r\n      </wsdl:input>\r\n      <wsdl:output>\r\n        <soap:body
+        use=\"literal\" />\r\n      </wsdl:output>\r\n    </wsdl:operation>\r\n    <wsdl:operation
+        name=\"GetArchivedResponse\">\r\n      <soap:operation soapAction=\"http://tempuri.org/GETI.eMagnus.WebServices/AuthGateway/GetArchivedResponse\"
+        style=\"document\" />\r\n      <wsdl:input>\r\n        <soap:body use=\"literal\"
+        />\r\n        <soap:header message=\"tns:GetArchivedResponseAuthGatewayHeader\"
+        part=\"AuthGatewayHeader\" use=\"literal\" />\r\n      </wsdl:input>\r\n      <wsdl:output>\r\n
+        \       <soap:body use=\"literal\" />\r\n      </wsdl:output>\r\n    </wsdl:operation>\r\n
+        \ </wsdl:binding>\r\n  <wsdl:binding name=\"AuthGatewaySoap12\" type=\"tns:AuthGatewaySoap\">\r\n
+        \   <soap12:binding transport=\"http://schemas.xmlsoap.org/soap/http\" />\r\n
+        \   <wsdl:operation name=\"AuthGatewayCertification\">\r\n      <soap12:operation
+        soapAction=\"http://tempuri.org/GETI.eMagnus.WebServices/AuthGateway/AuthGatewayCertification\"
+        style=\"document\" />\r\n      <wsdl:input>\r\n        <soap12:body use=\"literal\"
+        />\r\n        <soap12:header message=\"tns:AuthGatewayCertificationAuthGatewayHeader\"
+        part=\"AuthGatewayHeader\" use=\"literal\" />\r\n      </wsdl:input>\r\n      <wsdl:output>\r\n
+        \       <soap12:body use=\"literal\" />\r\n      </wsdl:output>\r\n    </wsdl:operation>\r\n
+        \   <wsdl:operation name=\"GetCertificationTerminalSettings\">\r\n      <soap12:operation
+        soapAction=\"http://tempuri.org/GETI.eMagnus.WebServices/AuthGateway/GetCertificationTerminalSettings\"
+        style=\"document\" />\r\n      <wsdl:input>\r\n        <soap12:body use=\"literal\"
+        />\r\n        <soap12:header message=\"tns:GetCertificationTerminalSettingsAuthGatewayHeader\"
+        part=\"AuthGatewayHeader\" use=\"literal\" />\r\n      </wsdl:input>\r\n      <wsdl:output>\r\n
+        \       <soap12:body use=\"literal\" />\r\n      </wsdl:output>\r\n    </wsdl:operation>\r\n
+        \   <wsdl:operation name=\"ProcessSingleCertificationCheck\">\r\n      <soap12:operation
+        soapAction=\"http://tempuri.org/GETI.eMagnus.WebServices/AuthGateway/ProcessSingleCertificationCheck\"
+        style=\"document\" />\r\n      <wsdl:input>\r\n        <soap12:body use=\"literal\"
+        />\r\n        <soap12:header message=\"tns:ProcessSingleCertificationCheckAuthGatewayHeader\"
+        part=\"AuthGatewayHeader\" use=\"literal\" />\r\n      </wsdl:input>\r\n      <wsdl:output>\r\n
+        \       <soap12:body use=\"literal\" />\r\n      </wsdl:output>\r\n    </wsdl:operation>\r\n
+        \   <wsdl:operation name=\"ProcessSingleCertificationCheckWithToken\">\r\n
+        \     <soap12:operation soapAction=\"http://tempuri.org/GETI.eMagnus.WebServices/AuthGateway/ProcessSingleCertificationCheckWithToken\"
+        style=\"document\" />\r\n      <wsdl:input>\r\n        <soap12:body use=\"literal\"
+        />\r\n        <soap12:header message=\"tns:ProcessSingleCertificationCheckWithTokenAuthGatewayHeader\"
+        part=\"AuthGatewayHeader\" use=\"literal\" />\r\n      </wsdl:input>\r\n      <wsdl:output>\r\n
+        \       <soap12:body use=\"literal\" />\r\n      </wsdl:output>\r\n    </wsdl:operation>\r\n
+        \   <wsdl:operation name=\"GetCertificationToken\">\r\n      <soap12:operation
+        soapAction=\"http://tempuri.org/GETI.eMagnus.WebServices/AuthGateway/GetCertificationToken\"
+        style=\"document\" />\r\n      <wsdl:input>\r\n        <soap12:body use=\"literal\"
+        />\r\n        <soap12:header message=\"tns:GetCertificationTokenAuthGatewayHeader\"
+        part=\"AuthGatewayHeader\" use=\"literal\" />\r\n      </wsdl:input>\r\n      <wsdl:output>\r\n
+        \       <soap12:body use=\"literal\" />\r\n      </wsdl:output>\r\n    </wsdl:operation>\r\n
+        \   <wsdl:operation name=\"ParseCertificationMICR\">\r\n      <soap12:operation
+        soapAction=\"http://tempuri.org/GETI.eMagnus.WebServices/AuthGateway/ParseCertificationMICR\"
+        style=\"document\" />\r\n      <wsdl:input>\r\n        <soap12:body use=\"literal\"
+        />\r\n        <soap12:header message=\"tns:ParseCertificationMICRAuthGatewayHeader\"
+        part=\"AuthGatewayHeader\" use=\"literal\" />\r\n      </wsdl:input>\r\n      <wsdl:output>\r\n
+        \       <soap12:body use=\"literal\" />\r\n      </wsdl:output>\r\n    </wsdl:operation>\r\n
+        \   <wsdl:operation name=\"GetTerminalSettings\">\r\n      <soap12:operation
+        soapAction=\"http://tempuri.org/GETI.eMagnus.WebServices/AuthGateway/GetTerminalSettings\"
+        style=\"document\" />\r\n      <wsdl:input>\r\n        <soap12:body use=\"literal\"
+        />\r\n        <soap12:header message=\"tns:GetTerminalSettingsAuthGatewayHeader\"
+        part=\"AuthGatewayHeader\" use=\"literal\" />\r\n      </wsdl:input>\r\n      <wsdl:output>\r\n
+        \       <soap12:body use=\"literal\" />\r\n      </wsdl:output>\r\n    </wsdl:operation>\r\n
+        \   <wsdl:operation name=\"ProcessSingleCheck\">\r\n      <soap12:operation
+        soapAction=\"http://tempuri.org/GETI.eMagnus.WebServices/AuthGateway/ProcessSingleCheck\"
+        style=\"document\" />\r\n      <wsdl:input>\r\n        <soap12:body use=\"literal\"
+        />\r\n        <soap12:header message=\"tns:ProcessSingleCheckAuthGatewayHeader\"
+        part=\"AuthGatewayHeader\" use=\"literal\" />\r\n      </wsdl:input>\r\n      <wsdl:output>\r\n
+        \       <soap12:body use=\"literal\" />\r\n      </wsdl:output>\r\n    </wsdl:operation>\r\n
+        \   <wsdl:operation name=\"ProcessSingleCheckWithToken\">\r\n      <soap12:operation
+        soapAction=\"http://tempuri.org/GETI.eMagnus.WebServices/AuthGateway/ProcessSingleCheckWithToken\"
+        style=\"document\" />\r\n      <wsdl:input>\r\n        <soap12:body use=\"literal\"
+        />\r\n        <soap12:header message=\"tns:ProcessSingleCheckWithTokenAuthGatewayHeader\"
+        part=\"AuthGatewayHeader\" use=\"literal\" />\r\n      </wsdl:input>\r\n      <wsdl:output>\r\n
+        \       <soap12:body use=\"literal\" />\r\n      </wsdl:output>\r\n    </wsdl:operation>\r\n
+        \   <wsdl:operation name=\"GetToken\">\r\n      <soap12:operation soapAction=\"http://tempuri.org/GETI.eMagnus.WebServices/AuthGateway/GetToken\"
+        style=\"document\" />\r\n      <wsdl:input>\r\n        <soap12:body use=\"literal\"
+        />\r\n        <soap12:header message=\"tns:GetTokenAuthGatewayHeader\" part=\"AuthGatewayHeader\"
+        use=\"literal\" />\r\n      </wsdl:input>\r\n      <wsdl:output>\r\n        <soap12:body
+        use=\"literal\" />\r\n      </wsdl:output>\r\n    </wsdl:operation>\r\n    <wsdl:operation
+        name=\"ParseMICR\">\r\n      <soap12:operation soapAction=\"http://tempuri.org/GETI.eMagnus.WebServices/AuthGateway/ParseMICR\"
+        style=\"document\" />\r\n      <wsdl:input>\r\n        <soap12:body use=\"literal\"
+        />\r\n        <soap12:header message=\"tns:ParseMICRAuthGatewayHeader\" part=\"AuthGatewayHeader\"
+        use=\"literal\" />\r\n      </wsdl:input>\r\n      <wsdl:output>\r\n        <soap12:body
+        use=\"literal\" />\r\n      </wsdl:output>\r\n    </wsdl:operation>\r\n    <wsdl:operation
+        name=\"GetArchivedResponse\">\r\n      <soap12:operation soapAction=\"http://tempuri.org/GETI.eMagnus.WebServices/AuthGateway/GetArchivedResponse\"
+        style=\"document\" />\r\n      <wsdl:input>\r\n        <soap12:body use=\"literal\"
+        />\r\n        <soap12:header message=\"tns:GetArchivedResponseAuthGatewayHeader\"
+        part=\"AuthGatewayHeader\" use=\"literal\" />\r\n      </wsdl:input>\r\n      <wsdl:output>\r\n
+        \       <soap12:body use=\"literal\" />\r\n      </wsdl:output>\r\n    </wsdl:operation>\r\n
+        \ </wsdl:binding>\r\n  <wsdl:service name=\"AuthGateway\">\r\n    <wsdl:port
+        name=\"AuthGatewaySoap\" binding=\"tns:AuthGatewaySoap\">\r\n      <soap:address
+        location=\"http://demo.eftchecks.com/webservices/AuthGateway.asmx\" />\r\n
+        \   </wsdl:port>\r\n    <wsdl:port name=\"AuthGatewaySoap12\" binding=\"tns:AuthGatewaySoap12\">\r\n
+        \     <soap12:address location=\"http://demo.eftchecks.com/webservices/AuthGateway.asmx\"
+        />\r\n    </wsdl:port>\r\n  </wsdl:service>\r\n</wsdl:definitions>"
+    http_version: 
+  recorded_at: Thu, 28 Feb 2019 06:17:05 GMT
+- request:
+    method: post
+    uri: https://demo.eftchecks.com/webservices/AuthGateway.asmx
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tns="http://tempuri.org/GETI.eMagnus.WebServices/AuthGateway"
+        xmlns:env="http://www.w3.org/2003/05/soap-envelope"><env:Header><AuthGatewayHeader
+        xmlns="http://tempuri.org/GETI.eMagnus.WebServices/AuthGateway"><UserName>VersaPayCert</UserName><Password>Vm8w4kwKn3xe2!</Password><TerminalID>2310</TerminalID></AuthGatewayHeader></env:Header><env:Body><tns:ProcessSingleCertificationCheck><tns:DataPacket>&lt;?xml
+        version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;AUTH_GATEWAY&gt;&lt;TRANSACTION&gt;&lt;TRANSACTION_ID/&gt;&lt;MERCHANT&gt;&lt;TERMINAL_ID&gt;2310&lt;/TERMINAL_ID&gt;&lt;/MERCHANT&gt;&lt;PACKET&gt;&lt;IDENTIFIER&gt;A&lt;/IDENTIFIER&gt;&lt;ACCOUNT&gt;&lt;ROUTING_NUMBER&gt;490000018&lt;/ROUTING_NUMBER&gt;&lt;ACCOUNT_NUMBER&gt;1234567890&lt;/ACCOUNT_NUMBER&gt;&lt;ACCOUNT_TYPE&gt;Checking&lt;/ACCOUNT_TYPE&gt;&lt;/ACCOUNT&gt;&lt;CONSUMER&gt;&lt;FIRST_NAME&gt;Bob&lt;/FIRST_NAME&gt;&lt;LAST_NAME&gt;Smith&lt;/LAST_NAME&gt;&lt;ADDRESS1/&gt;&lt;ADDRESS2/&gt;&lt;CITY/&gt;&lt;STATE/&gt;&lt;ZIP/&gt;&lt;PHONE_NUMBER/&gt;&lt;DL_STATE/&gt;&lt;DL_NUMBER/&gt;&lt;COURTESY_CARD_ID/&gt;&lt;/CONSUMER&gt;&lt;CHECK&gt;&lt;CHECK_AMOUNT&gt;10&lt;/CHECK_AMOUNT&gt;&lt;/CHECK&gt;&lt;/PACKET&gt;&lt;/TRANSACTION&gt;&lt;/AUTH_GATEWAY&gt;</tns:DataPacket></tns:ProcessSingleCertificationCheck></env:Body></env:Envelope>
+    headers:
+      User-Agent:
+      - HTTPClient/1.0 (2.8.3, ruby 2.6.0 (2018-12-25))
+      Accept:
+      - "*/*"
+      Date:
+      - Thu, 28 Feb 2019 06:17:05 GMT
+      Soapaction:
+      - '"http://tempuri.org/GETI.eMagnus.WebServices/AuthGateway/ProcessSingleCertificationCheck"'
+      Content-Type:
+      - application/soap+xml;charset=UTF-8
+      Content-Length:
+      - '1476'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 28 Feb 2019 06:17:05 GMT
+      Content-Type:
+      - application/soap+xml; charset=utf-8
+      Content-Length:
+      - '1230'
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - BIGipServerGETI_CERT_Check_Gateway_pool=577569290.20480.0000; path=/; Httponly;
+        Secure
+      - __cfduid=de5935534abe0fb8d09082a39d9b6a59a1551334625; expires=Fri, 28-Feb-20
+        06:17:05 GMT; path=/; domain=.eftchecks.com; HttpOnly
+      Cache-Control:
+      - private, max-age=0
+      X-Aspnet-Version:
+      - 2.0.50727
+      X-Powered-By:
+      - ASP.NET
+      Expect-Ct:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 4b00c422a9387967-SEA
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="utf-8"?><soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"><soap:Body><ProcessSingleCertificationCheckResponse
+        xmlns="http://tempuri.org/GETI.eMagnus.WebServices/AuthGateway"><ProcessSingleCertificationCheckResult>&lt;?xml
+        version="1.0" encoding="utf-8"?&gt;&lt;RESPONSE xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema" REQUEST_ID=""&gt;&lt;VALIDATION_MESSAGE&gt;&lt;RESULT&gt;Passed&lt;/RESULT&gt;&lt;SCHEMA_FILE_PATH&gt;http://demo.eftchecks.com/webservices/Schemas/WEB/Ng_CheckNoVerificationDLOptional.xsd&lt;/SCHEMA_FILE_PATH&gt;&lt;/VALIDATION_MESSAGE&gt;&lt;AUTHORIZATION_MESSAGE&gt;&lt;TRANSACTION_ID
+        /&gt;&lt;RESPONSE_TYPE&gt;A&lt;/RESPONSE_TYPE&gt;&lt;RESPONSE_TYPE_TEXT&gt;APPROVED&lt;/RESPONSE_TYPE_TEXT&gt;&lt;RESULT_CODE&gt;0&lt;/RESULT_CODE&gt;&lt;TYPE_CODE&gt;4096&lt;/TYPE_CODE&gt;&lt;CODE&gt;AUTH
+        NUM 272-172&lt;/CODE&gt;&lt;MESSAGE&gt;APPROVAL&lt;/MESSAGE&gt;&lt;/AUTHORIZATION_MESSAGE&gt;&lt;/RESPONSE&gt;</ProcessSingleCertificationCheckResult></ProcessSingleCertificationCheckResponse></soap:Body></soap:Envelope>
+    http_version: 
+  recorded_at: Thu, 28 Feb 2019 06:17:05 GMT
+recorded_with: VCR 4.0.0

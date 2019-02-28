@@ -1,8 +1,9 @@
 require 'spec_helper'
 
-describe Geti::AppClient, :remote => true do
+describe Geti::AppClient, :vcr => true do
   before :all do
     @timestamp = Time.now.to_i
+    pending "Code currently suffering bit rot, API changed out from under me."
   end
 
   def merchant_params(ts)

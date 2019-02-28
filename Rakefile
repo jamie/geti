@@ -28,4 +28,6 @@ Hoe.spec "geti" do
   dependency 'guard', '>0', :dev
   dependency 'guard-rspec', '>0', :dev
   dependency 'rb-fsevent', '>0', :dev
+  dependency 'vcr', '>0', :dev
+  dependency 'webmock', '>0', :dev
 end
